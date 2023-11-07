@@ -13,6 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+IF errors appear when running npm run dev or any of the commands listed above. On Windows use npm install within the folder then attempt to use run command.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
