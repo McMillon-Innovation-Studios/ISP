@@ -3,9 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image';
 import Script from 'next/script';
 
-
-
-
 const NavBar = () => {
   return (
 
@@ -24,7 +21,7 @@ const NavBar = () => {
 
         <div className="w-24 h-[35px] bg-white rounded-[99px] border border-blue-600">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']">
-            <Link href='/connect'>Connect</Link> 
+            <Link href='/'>Connect</Link> 
             </div>
         </div>
 
@@ -65,10 +62,5 @@ const NavBar = () => {
     </nav>  
   )
 }
-
-<script>
-
-
-</script>
 
 export default NavBar
