@@ -238,7 +238,7 @@ export const Users = [
     "major": "Political Science",
     "details": "Ahoj! I'm Matej from Bratislava, Slovakia. Delving into the complexities of Political Science at Yale University, I'm passionate about global politics and diplomatic relations. In my free time, I engage in political discussions and explore the historical charm of New Haven.",
     "image": "/Matej_Novak.jpg"
-  }
+  },
   {
     "id": 22,
     "firstname": "Elena",
