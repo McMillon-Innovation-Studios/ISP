@@ -17,7 +17,7 @@ export default function ProfileModal(props)
     <div className = 'h-[50] w-[50] py-10 px-10 fixed inset-0 bg-black bg-opacity-30'>
     <div className='bg-white rounded-md border border-black p-4 flex flex-col items-center'>
       
-      <div id='ProfileImage' className='bg-blue-500 rounded-full'>
+      <div id='ProfileImage' className='bg-gradient-to-r from-cyan-500 to-blue-500  rounded-full drop-shadow-lg'>
         <Image
         src={props.image}
         alt='profile'
@@ -29,7 +29,7 @@ export default function ProfileModal(props)
       </div>
 
       <div id='Name' className='font-bold text-xl py-4'>{props.firstname} {props.lastname}</div>
-      <div id='Flag'>
+      <div id='Flag' className='border border-black drop-shadow'>
 
       <Image
       src={props.countryflag}

@@ -13,7 +13,7 @@ const ProfileCard = (props) => {
 
   return (
     <div className='bg-white rounded-md border border-black p-4 flex flex-col items-center'>
-      <div id='ProfileImage' className='bg-blue-500 rounded-full'>
+      <div id='ProfileImage' className='bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'>
         <Image
         src={props.image}
         alt='profile'
@@ -25,8 +25,7 @@ const ProfileCard = (props) => {
       </div>
 
       <div id='Name' className='font-bold text-xl py-4'>{props.firstname} {props.lastname}</div>
-      <div id='Flag'>
-
+      <div id='Flag' className='border border-black drop-shadow'>
       <Image
       src={props.countryflag}
       alt='flag'
@@ -42,7 +41,7 @@ const ProfileCard = (props) => {
       </div>
 
       <div id='Details' className='p-4 text-white'>
-        <button className='focus:ring-2 bg-blue-500 p-2 rounded-lg' 
+        <button className='focus:ring-2 bg-blue-500  p-2' 
         onClick={() => {props.getmodal(props.id); props.getmodalopen(setClick(true))}}>Details</button>
       </div>
     </div>
