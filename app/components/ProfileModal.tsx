@@ -49,12 +49,12 @@ export default function ProfileModal(props)
         {props.details}
       </div>
 
-      <div className='py-2 px-3 h-10 w-80 bg-blue-500'>
-      <input className='bg-grey rounded-md' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
+      <div className='py-2 px-3 h-10 w-96 bg-blue-500'>
+      <input className='bg-grey rounded-md w-80' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
       </div>
 
       <div className='grid grid-cols-2 content-center'>
-      <button className='px-5 bg-green-500 text-white h-10 w-20' onClick={() => props.childgetmodal(modalMessage)}>Send</button>
+      <button className='px-5 bg-green-500 text-white h-10 w-20' onClick={() => {props.childgetmodal(modalMessage, props.firstname); setOpen(false)}}>Send</button>
       <button className='bg-red-500 text-white h-10 w-20' onClick={() => {setOpen(false)}}>Exit</button>
       </div>
     </div>

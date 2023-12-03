@@ -8,6 +8,8 @@ import { useState } from 'react'
 import { text } from 'stream/consumers'
 import NavBar from './components/navBar'
 import Hero from './components/hero'
+import ConfirmModal from './components/ConfirmModal'
+import { Talks } from './talks'
 
 let nextID = 0;
 let messageArray = []
@@ -19,6 +21,7 @@ export default function Home() {
   const [filter, setfilter] = useState('Country')
   const [modalOpen, setmodalOpen] = useState(false)
   const [modalID, setmodalID] = useState (0)
+  const [modalName, setmodalName] = useState('')
   const [newMessage, setNewMessage] = useState('')
   const [messageArray, setMessageArray] = useState([])
 
@@ -30,27 +33,15 @@ export default function Home() {
     setmodalOpen(modalClick)
   }
 
-  const getModalMessage = (modalMessage) => {
+  const getModalMessage = (modalMessage, firstname) => {
     setNewMessage(modalMessage)
-    addToArray(modalMessage)
+    Talks.push({id: Talks.length+1, message: modalMessage, name: firstname})
   }
-
-  function addToArray (message: string)
-  {
-    messageArray.push(message)
-  }
-
-
 
   return (
     <body>
       <NavBar />
       <Hero />
-
-
-    <div>
-      {newMessage}
-    </div>
     <div id = 'grid' className="grid grid-cols-5 content-center">
 
     {/* Search */}

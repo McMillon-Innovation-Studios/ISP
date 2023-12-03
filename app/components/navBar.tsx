@@ -15,7 +15,7 @@ const NavBar = () => {
         {/*Button with Text */}
         <div className="w-24 h-[35px] bg-white rounded-[99px] border border-blue-600">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']">
-            <Link href='/connect'>About</Link> 
+            <Link href='/'>About</Link> 
             </div>
         </div>
 
@@ -27,13 +27,13 @@ const NavBar = () => {
 
         <div className="w-24 h-[35px] bg-white rounded-[99px] border border-blue-600">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']">
-            <Link href='/connect'>Career</Link> 
+            <Link href='/'>Career</Link> 
             </div>
         </div>
 
         <div className="w-24 h-[35px] bg-white rounded-[99px] border border-blue-600">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']">
-            <Link href='/connect'>Support</Link> 
+            <Link href='/'>Support</Link> 
             </div>
         </div>
 

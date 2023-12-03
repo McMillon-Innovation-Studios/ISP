@@ -240,18 +240,6 @@ export const Users = [
     "image": "/question.png"
   },
   {
-    "id": 25,
-    "firstname": "Diego",
-    "lastname": "Gomez",
-    "homecountry": "Colombia",
-    "homecity": "Bogotá",
-    "countryflag": "/Colombia.png",
-    "university": "University of Florida",
-    "major": "Business Administration",
-    "details": "Hola! I'm Diego from Bogotá, Colombia. Pursuing a degree in Business Administration at the University of Florida, I'm passionate about entrepreneurship and global business strategies. In my free time, I enjoy Gator football games and explore the vibrant culture of Gainesville.",
-    "image": "/question.png"
-  },
-  {
     "id": 26,
     "firstname": "Rosa",
     "lastname": "Navarro",
@@ -336,18 +324,6 @@ export const Users = [
     "image": "/question.png"
   },
   {
-    "id": 39,
-    "firstname": "Daniel",
-    "lastname": "Herrera",
-    "homecountry": "Colombia",
-    "homecity": "Bogotá",
-    "countryflag": "/Colombia.png",
-    "university": "Texas Christian University",
-    "major": "Finance",
-    "details": "¡Hola! I'm Daniel from Bogotá, Colombia. Navigating the world of Finance at TCU, I'm passionate about investment strategies and financial markets. In my free time, I attend Horned Frogs football games and explore the dynamic city of Fort Worth.",
-    "image": "/question.png"
-  },
-  {
     "id": 40,
     "firstname": "Eva",
     "lastname": "Ortega",
@@ -429,18 +405,6 @@ export const Users = [
     "university": "Florida State University",
     "major": "Psychology",
     "details": "Hello, I'm Yuki from Osaka, Japan. Currently exploring Psychology at Florida State, I'm passionate about understanding the human mind. In my free time, I participate in psychology research and enjoy the lively atmosphere in Tallahassee.",
-    "image": "/question.png"
-  },
-  {
-    "id": 47,
-    "firstname": "Aisha",
-    "lastname": "Al-Farsi",
-    "homecountry": "Oman",
-    "homecity": "Muscat",
-    "countryflag": "/Oman.png",
-    "university": "Texas A&M University",
-    "major": "Chemical Engineering",
-    "details": "Hello, I'm Aisha from Muscat, Oman. Diving into the world of Chemical Engineering at Texas A&M, I'm passionate about sustainable processes. In my free time, I engage in engineering projects and embrace the Aggie spirit in College Station.",
     "image": "/question.png"
   },
   {
