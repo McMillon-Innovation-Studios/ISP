@@ -44,9 +44,7 @@ const NavBar = () => {
         </div>
 
         {/*Search Bar */}
-        <div className="w-[400px] h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 col-start-7 col-span-4">
-            <div className="relative text-start px-3 text-black opacity-50 text-[20px] font-bold font-['Montserrat']">Search</div>
-        </div>
+        <input className="px-3 w-[400px] h-[35px] leading-[34px] font-['Montserrat'] rounded-[99px] border border-slate-300 col-start-7 col-span-4" type='text' placeholder='Search'></input>
 
         <div className="w-32 h-[38px] leading-[35px] bg-white rounded-[99px] border border-blue-600 col-start-11 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[22px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">

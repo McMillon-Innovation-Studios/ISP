@@ -3,7 +3,12 @@ import Image from 'next/image'
 
 const Chat = (props) => {
   return (
+
+    // Why can't I play a JSX comment up here using {/* Comment Goes Here */}
     <div className='relative rounded-lg px-2 py-2 flex items-center space-x-3 hover:border-grey-400 focus-within:ring-2 foucus-within:ring-offset-2'>
+    {/* Isn't this a duplicate?? ^^^ */}
+    
+    {/* Image + Picture */}
     <div className='relative rounded-lg px-2 py-2 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 mb-3 hover:bg-gray-200'>
       <div className='flex-shrink-0'>
         <Image 

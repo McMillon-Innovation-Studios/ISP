@@ -42,35 +42,41 @@ export default function Home() {
     <body>
       <NavBar />
       <Hero />
-    <div id = 'grid' className="grid grid-cols-5 content-center">
+    
+    <div>
+      <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>
+      <div className="grid grid-cols-5 content-center py-8 bg-white">
 
-    {/* Search */}
-    <div className="w-[261px] h-[400px] p-10 flex-col justify-start items-center gap-5 inline-flex">
-    <div className="w-[261px] h-[33px] bg-white p-2 border border-black border-opacity-50 justify-end items-center gap-1 inline-flex">
-    <input type='text' placeholder={filter} onChange={event => {setsearch(event.target.value)}}></input>
-    <div className="w-5 h-5 relative" />
-    </div>
+        {/* Side Bar (Search) */}
+        <div className="text-center col-span-1">
+          <div className="w-[261px] h-[400px] p-10 flex-col justify-start items-center gap-5 inline-flex">
+            
+            {/* Search */}
+            <input className="w-[261px] h-[33px] bg-white p-3 rounded-[20px] border border-black border-opacity-50 justify-end items-center gap-1 inline-flex" type='text' placeholder={"Search " + filter} onChange={event => {setsearch(event.target.value)}}></input>
 
-    {/* Country Button */}
-    <div className="w-[261px] h-10 relative">
-        <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
-        <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Country')}}>Country</button>
-    </div>
+            {/* Country Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Country')}}>Country</button>
+            </div>
 
-    {/* School Button */}
-    <div className="w-[261px] h-10 relative">
-        <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
-        <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('School')}}>School</button>
-    </div>
+            {/* School Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('School')}}>School</button>
+            </div>
 
-    {/* Major Button */}
-    <div className="w-[261px] h-10 relative">
-        <div className="w-[261px] h-10 left-0 top-0 bg-sky-50 rounded-[20px] border-2 border-blue-600" />
-        <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Major')}}>Major</button>
-    </div>
-    </div>
+            {/* Major Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Major')}}>Major</button>
+              </div>
+            </div>
+          </div>
 
-        {Users.filter((Users) => {
+        {/* Profile Grid */}
+        <div className="grid grid-cols-4 text-center col-span-4 gap-10 mx-7 mb-5">
+          {Users.filter((Users) => {
           if (search == '')
           {
             return Users
@@ -89,47 +95,49 @@ export default function Home() {
           }
         }        
         ).map (Users => (
-           <ProfileCard
-           getmodal = {getModalID}
-           getmodalopen = {getModalOpen}
-           key = {Users.id}
-           image = {Users.image}
-           firstname = {Users.firstname}
-           lastname = {Users.lastname}
-           homecity = {Users.homecity}
-           homecountry = {Users.homecountry}
-           university = {Users.university}
-           major = {Users.major}
-           countryflag = {Users.countryflag}
-           id = {Users.id}
-           />
+            <ProfileCard
+            getmodal = {getModalID}
+            getmodalopen = {getModalOpen}
+            key = {Users.id}
+            image = {Users.image}
+            firstname = {Users.firstname}
+            lastname = {Users.lastname}
+            homecity = {Users.homecity}
+            homecountry = {Users.homecountry}
+            university = {Users.university}
+            major = {Users.major}
+            countryflag = {Users.countryflag}
+            id = {Users.id}
+            />
         ))}
 
-
-{Users.filter((Users) => {
+        {Users.filter((Users) => {
           if (modalID == Users.id)
           {
             return Users
           }
         }        
         ).map (Users => (
-           <ProfileModal
-           childgetmodal = {getModalMessage}
-           ifopen = {modalOpen}
-           key = {Users.id}
-           image = {Users.image}
-           firstname = {Users.firstname}
-           lastname = {Users.lastname}
-           homecity = {Users.homecity}
-           homecountry = {Users.homecountry}
-           university = {Users.university}
-           major = {Users.major}
-           countryflag = {Users.countryflag}
-           id = {Users.id}
-           details = {Users.details}
-           />
+            <ProfileModal
+            childgetmodal = {getModalMessage}
+            ifopen = {modalOpen}
+            key = {Users.id}
+            image = {Users.image}
+            firstname = {Users.firstname}
+            lastname = {Users.lastname}
+            homecity = {Users.homecity}
+            homecountry = {Users.homecountry}
+            university = {Users.university}
+            major = {Users.major}
+            countryflag = {Users.countryflag}
+            id = {Users.id}
+            details = {Users.details}
+            />
         ))}
       </div>
-      </body>
+    </div>
+  </div>
+  
+  </body>
   )
 }
