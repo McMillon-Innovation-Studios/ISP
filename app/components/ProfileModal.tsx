@@ -19,7 +19,7 @@ export default function ProfileModal(props)
       
     <div className='w-[650px] mx-auto bg-white rounded-md border border-black p-5 shadow-2xl'>
     
-    
+    {/* Close Button */}
     <div className="flex flex-col items-end">
       <Image
         src={'/closebutton.png'}
@@ -76,7 +76,7 @@ export default function ProfileModal(props)
       </div>
       <div className="p-4">
         {/* Note to Self (Josh): Could also put w-96*/}
-      <input className='pl-2 bg-grey rounded-md w-[500px] h-[40px] bg-sky-50 border border-slate-300' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
+        <input className='pl-2 bg-grey rounded-md w-[500px] h-[40px] bg-sky-50 border border-slate-300' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
       </div>
         <div className="pb-8">
         <button className='h-9 w-28 rounded-[20px] text-[15px] border-2 border-blue-600 text-blue-600 ' onClick={() => {props.childgetmodal(modalMessage, props.firstname); setOpen(false)}}>Send</button>
