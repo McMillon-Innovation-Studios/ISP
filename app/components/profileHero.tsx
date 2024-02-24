@@ -10,5 +10,4 @@ const ProfileHero = () => {
   )
 }
 
-
 export default ProfileHero

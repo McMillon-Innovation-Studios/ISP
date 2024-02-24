@@ -33,13 +33,13 @@ const NavBar = () => {
 
         <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
-            <Link href='/'>Support</Link> 
+            <Link href='/message'>Support</Link> 
             </div>
         </div>
 
         <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
-            <Link href='/message'>Message</Link> 
+            <Link href='/testmessage'>Message</Link> 
             </div>
         </div>
 
@@ -48,13 +48,13 @@ const NavBar = () => {
 
         <div className="w-32 h-[38px] leading-[35px] bg-white rounded-[99px] border border-blue-600 col-start-11 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[22px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
-            <Link href='/connect'>Log In</Link> 
+            <Link href='/login'>Log In</Link> 
             </div>
         </div>
 
         <div className="w-32 h-[38px] leading-[35px] bg-blue-600 rounded-[99px] border border-blue-600 col-start-12 hover:bg-white transition ease-out duration-400">
             <div className="relative text-center text-white text-[22px] font-bold font-['Montserrat'] hover:text-blue-600 transition ease-out duration-400">
-            <Link href='/connect'>Sign Up</Link> 
+            <Link href='/register'>Sign Up</Link> 
             </div>
         </div>
     </nav>  

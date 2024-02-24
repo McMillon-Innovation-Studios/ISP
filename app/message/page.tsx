@@ -1,13 +1,12 @@
 'use client'
 import React from 'react'
 import NavBar from '../components/navBar'
-import Chat from '../components/chat'
 import chatName from '../components/chatname'
 import { Talks } from '../talks'
 import Image from 'next/image'
 import ChatProfile from '../components/chatProfile'
 
-export default function message (){
+export default function message () {
 
   return (
   <div className="overflow-hidden font-['Montserrat']">

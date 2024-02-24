@@ -1,6 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 
+// ************************************
+// DONT TOUCH THIS
+// ************************************
+
+
 const ChatProfile = (props) => {
   return (
 
