@@ -1,24 +1,107 @@
 'use client'
 import React from 'react'
 import NavBar from '../components/navBar'
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 const Login = () => {
+
+    const[email, setEmail] = useState('');
+    const[password, setPassword] = useState('');
+    // Added name, email, and password to errors (may cause errors)
+    const[errors, setErrors] = useState({});
+    const[loading, setLoading] = useState(false);
+    const[avatarUrl,setAvatar] = useState('');
+    const router = useRouter();
+
+    const validateForm=()=>{
+        const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const newErrors={};
+
+        if(!email.trim() || !emailRegex.test(email)){
+            newErrors.email = 'Email is invalid!';
+        }
+        if(password.length<6){
+            newErrors.password = "Password must be at least 6 characters!";
+        }
+
+        setErrors(newErrors)
+        {
+            return Object.keys(newErrors).length===0;
+        }
+    }
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        setLoading(true);
+        try{
+            if(!validateForm())
+            {
+                setLoading(false);
+                return;
+            }
+            const userCredential = await signInWithEmailAndPassword(auth,email,password);
+            const user = userCredential.user;
+
+            if(user){
+                router.push('/');
+            }
+            setErrors({});
+
+            alert("Registered sucessfully :)");
+        }catch(error){
+            console.log(error);
+        }
+        setLoading(false);
+    }
+
     return (
         <div>
             <NavBar/>
-            <div className=''>                
-                <span>Login</span>
-                <form className="w-[200px] flex flex-col gap-5">
-                <input type="text" placeholder="display name"/>
-                <input type="email" placeholder="email"/>
-                <input type="password" placeholder="password"/>
-                <button>Sign In</button>
+            <div className=''>
+                
+                <span>Register</span>
+                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
+
+                {/* Email */}
+                <div>
+                <label>
+                    <span>Email</span>
+                </label>
+                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
+                </div>
+
+                {/* Password */}
+                <div>
+                <label>
+                    <span>Password</span>
+                </label>
+                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
+                </div>
+
+                {/* Sign Up Button */}
+                <button type="submit">
+                    {
+                        loading ? "Loading..." : "Login"
+                    }
+                    </button>
+
+                <span>Don't have an Account?{' '}
+                    <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
+                        Register
+                    </Link>
+
+                </span>
                 </form>
-                <p>Don&apos;t have an account? Sign Up</p>
-            </div>
-            
+            </div>            
         </div>
     )
 }
 
-export default Login;
+export default Login
