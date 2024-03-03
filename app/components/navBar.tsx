@@ -2,17 +2,40 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image';
 import Script from 'next/script';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { firestore, app} from '@/lib/firebase'
-import { getAuth, signOut } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
+import { doc, getDoc } from 'firebase/firestore';
+
 
 
 const NavBar = () => {
     const[activeTab, setActiveTab]=useState('');
     // const[loggedIn, setLoggedIn]=useState(loggedInStatus);
+    const [user, setUser] = useState({});
     const auth = getAuth(app);
     const router = useRouter();
+
+    useEffect(() => {
+        // Use onAuthStateChanged to listen for changes in authentication state
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            const docRef = doc(firestore, 'users', user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = ({ id: docSnap.id, ...docSnap.data() })
+                setUser(data);
+            } else {
+              console.log('No such document!');
+            }
+          } else {
+            setUser(null);
+            //router.push('/login');
+          }
+        });
+        return () => unsubscribe();
+      }, [auth, router]); 
 
 
     const handleTabClick=(tab)=>{
@@ -76,36 +99,41 @@ const NavBar = () => {
         {/* Sign in and Register */}
 
             {
-            // loggedIn && (<>
-            //     <div className="w-32 h-[38px] leading-[35px] bg-blue-600 rounded-[99px] border border-blue-600 col-start-12 hover:bg-white transition ease-out duration-400">
-            //     <div className="relative text-center text-white text-[22px] font-bold font-['Montserrat'] hover:text-blue-600 transition ease-out duration-400">
-            //     <button onClick={handleLogout} className="">Log Out</button>
-            //         </div>
-            //     </div>
-            //  </>)
+                user != null && (<>   
+                <div className="col-start-12 flex flex-row items-center">
+                    <Image 
+                    className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                    src= "/question.png"
+                    alt='flag'
+                    width={100}
+                    height={100}
+                    />
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn m-1 w-[70px]">Me</div>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><a>Edit Profile</a></li>
+                            <li><a onClick={handleLogout}>Log Out</a></li>
+                        </ul>
+                    </div>
+                </div> 
+             </>)
             }
     
        
-            {/* {
-                !loggedIn && (<> */}
+            {
+                user == null && (<>
                 <div className="w-32 h-[38px] leading-[35px] bg-white rounded-[99px] border border-blue-600 col-start-11 hover:bg-blue-600 transition ease-out duration-400">
                     <div className="relative text-center text-blue-600 text-[22px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
                     <Link href='/login'>Log In</Link> 
                     </div>
                 </div>
-                {/* </>)
-            } */}
-        
 
-        
-            {
-                // !loggedIn && (<>
                 <div className="w-32 h-[38px] leading-[35px] bg-blue-600 rounded-[99px] border border-blue-600 col-start-12 hover:bg-white transition ease-out duration-400">
                     <div className="relative text-center text-white text-[22px] font-bold font-['Montserrat'] hover:text-blue-600 transition ease-out duration-400">
                     <Link href='/register'>Sign Up</Link> 
                     </div>
                 </div>
-            // </>)
+                </>)
             }
     </nav>  
   )

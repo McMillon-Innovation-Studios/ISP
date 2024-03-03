@@ -30,13 +30,18 @@ const TestMessage = () => {
         }
       } else {
         setUser(null);
-        router.push('/login');
+        //router.push('/login');
       }
     });
     return () => unsubscribe();
   }, [auth, router]); 
 
-  if(user == null) return (<div className='text-4xl'>Loading...</div>);
+  if(user == null) return (
+    <div>
+    <NavBar/>
+    <div>Login to start using Messages!</div>
+    </div>
+  );
 
     return (
         <div className='m-0 h-screen'>

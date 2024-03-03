@@ -97,6 +97,17 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
       setSelectedChatroom(data);
   }
 
+  const logoutClick = () => {
+    signOut(auth)
+    .then(() => {
+      console.log('Log out successful');
+     router.push('/login');
+    })
+    .catch((error) => {
+      console.error('Error logging out:', error);
+    });
+   }
+
   return(
     <div className="basis-1/4 bg-white border-y-2 border-slate-200 font-['Montserrat']">
         <ChatNavBar/>
