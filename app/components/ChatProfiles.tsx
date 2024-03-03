@@ -5,7 +5,7 @@ import Image from 'next/image'
 // TESTING FOR FIREBASE
 // *******************
 
-const ChatProfiles = () => {
+const ChatProfiles = ({name,latestMessageText,time}) => {
   return (
 
     <div className="group flex flex-row bg-white justify-between hover:bg-blue-600">
@@ -23,10 +23,10 @@ const ChatProfiles = () => {
             </div>
             <div className="p-2 flex-col">
                 <div className="font-bold group-hover:text-white">
-                    <span>Name</span>
+                    <span>{name}</span>
                 </div>
                 <div className="text-slate-400 group-hover:text-white">
-                    <p>You: Hello!</p>
+                    <p>{latestMessageText}</p>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@ const ChatProfiles = () => {
         {/* Right Side */}
         <div className="px-3 py-2 flex-col text-right">
             <div className="text-slate-400 group-hover:text-white">
-                00:00
+                {time}
             </div>  
             <div className="group-hover:text-white">
                 1

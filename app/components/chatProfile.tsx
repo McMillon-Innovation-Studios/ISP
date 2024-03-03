@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 // ************************************
-// DONT TOUCH THIS
+// DONT TOUCH THIS: OLD CHAT IMPLEMENTATION
 // ************************************
 
 

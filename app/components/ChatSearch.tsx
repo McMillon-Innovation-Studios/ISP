@@ -7,17 +7,6 @@ const ChatSearch = () => {
             <div>
                 <input className="w-80 h-10 bg-white p-3 rounded-[20px] border border-black border-opacity-50" type="text" placeholder="Search"/>
             </div>
-            <div>
-                <Image 
-                    src=""
-                    alt=""
-                />
-                <div>
-                    <span>Name</span>
-                </div>
-
-            </div>
-            
         </div>
     )
 }

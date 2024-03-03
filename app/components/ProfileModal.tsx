@@ -26,7 +26,7 @@ export default function ProfileModal(props)
         alt='profile'
         width={30}
         height={30}
-        className=""
+        className="cursor-pointer"
         onClick={() => {setOpen(false)}}
         priority
         />

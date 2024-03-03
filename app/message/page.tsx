@@ -6,6 +6,11 @@ import { Talks } from '../talks'
 import Image from 'next/image'
 import ChatProfile from '../components/chatProfile'
 
+// ***************************************
+// DO NOT DELETE
+// OLD IMPLEMENTATION OF MESSAGE
+// ***************************************
+
 export default function message () {
 
   return (

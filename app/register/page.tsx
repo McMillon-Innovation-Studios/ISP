@@ -67,7 +67,7 @@ const Register = () => {
 
             alert("Registered sucessfully :)");
         }catch(error){
-            console.log(error);
+            console.log("Error Registering: ", error);
         }
         setLoading(false);
     }
@@ -120,7 +120,7 @@ const Register = () => {
                 {/* Sign Up Button */}
                 <button type="submit">
                     {
-                        loading ? "Loading..." : "Register"
+                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
                     }
                     </button>
 

@@ -15,6 +15,7 @@ const Login = () => {
     // Added name, email, and password to errors (may cause errors)
     const[errors, setErrors] = useState({});
     const[loading, setLoading] = useState(false);
+    const[loggedIn, setLoggedIn] = useState(false);
     const[avatarUrl,setAvatar] = useState('');
     const router = useRouter();
 
@@ -52,9 +53,9 @@ const Login = () => {
             }
             setErrors({});
 
-            alert("Registered sucessfully :)");
+            alert("Registered Sucessfully :)");
         }catch(error){
-            console.log(error);
+            console.log("Error Registering:", error);
         }
         setLoading(false);
     }
@@ -64,7 +65,7 @@ const Login = () => {
             <NavBar/>
             <div className=''>
                 
-                <span>Register</span>
+                <span>Log In</span>
                 <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
 
                 {/* Email */}
