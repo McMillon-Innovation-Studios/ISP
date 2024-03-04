@@ -14,13 +14,13 @@ const MessageCard = ({message,me,other}) => {
 
     return (
         <div key={message.id} className={`flex mb-4 ${isMessageFromMe ? 'justify-end' : 'justify-start'}`}>
-            <div className={`p-2 rounded-md m-2 ${isMessageFromMe ? 'bg-blue-600 text-white' : 'bg-white text-black'}`}>
+            <div className={`p-2 rounded-md m-2 max-w-[500px] break-words ${isMessageFromMe ? 'bg-blue-600 text-white' : 'bg-white text-black'}`}>
                 {
                     message.image && (
                         <img src={message.image} className='max-h-60 w-auto rounded-md object-contain mb-2' />
                     )
                 }
-                <p className={`text-lg ${isMessageFromMe ? 'text-right' : 'text-left'}`}>{message.content}</p>
+                <p className={`text-lg font-medium ${isMessageFromMe ? 'text-right' : 'text-left'}`}>{message.content}</p>
                 <div className="flex flex-col items-end text-[12px]">{timeAgo(message.time)}</div>
             </div>
 

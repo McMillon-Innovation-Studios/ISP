@@ -25,8 +25,8 @@ const ChatProfiles = ({name,latestMessageText,time}) => {
                 <div className="font-bold group-hover:text-white">
                     <span>{name}</span>
                 </div>
-                <div className="text-slate-400 group-hover:text-white">
-                    <p>{latestMessageText}</p>
+                <div className="text-slate-400 group-hover:text-white max-w-[250px]">
+                    <p className="truncate">{latestMessageText}</p>
                 </div>
             </div>
         </div>

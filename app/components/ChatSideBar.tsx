@@ -124,9 +124,6 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
                   />
   
                   </div>
-                  
-
-
               ))
               }
           </>)

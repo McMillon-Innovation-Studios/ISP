@@ -3,14 +3,14 @@ import Image from 'next/image'
 import ChatSearch from './ChatSearch'
 import { HiOutlineMenu } from "react-icons/hi";
 
-const ChatNavBar = (logout) => {
+const ChatNavBar = () => {
     return (
         <div className="flex flex-row items-center text-center">
             
             <div className="pl-2 mx-auto">
               <HiOutlineMenu
               className="w-8 h-8 cursor-pointer"
-              onClick={()=>logout}
+              
               />
               
             </div>

@@ -16,6 +16,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
     const [imagePreview,setImagePreview] = useState(null);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
+    // Handles Image Change
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if(file){
@@ -28,6 +29,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
         }
     }
 
+    // Handles Uploading Image
     const handleUpload = async () => {
         if (!file) {
           console.error('No file selected.');
@@ -61,6 +63,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
         );
       };
 
+      // Handle Emoji
       const handleEmojiClick = (emojiData, event) => {
         // Append the selected emoji to the message state
         setMessage((prevMessage) => prevMessage + emojiData.emoji);

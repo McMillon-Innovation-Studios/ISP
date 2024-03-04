@@ -53,9 +53,9 @@ const Login = () => {
             }
             setErrors({});
 
-            alert("Registered Sucessfully :)");
+            alert("Logged In Sucessfully :)");
         }catch(error){
-            console.log("Error Registering:", error);
+            console.log("Error Logging In:", error);
         }
         setLoading(false);
     }
