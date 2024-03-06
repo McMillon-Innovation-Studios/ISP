@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
+{/* Is this even being used yet? */}
 const chatName = () => {
   return (
     <div className='relative rounded-lg px-2 py-2 flex items-center space-x-3 hover:border-grey-400 focus-within:ring-2 foucus-within:ring-offset-2'>

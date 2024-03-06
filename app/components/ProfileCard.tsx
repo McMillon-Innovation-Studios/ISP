@@ -11,7 +11,9 @@ const ProfileCard = (props) => {
   const [modalClick, setClick] = useState(false)
 
   return (
-    <div className='bg-white rounded-md border border-black p-4 flex flex-col items-center'>
+    <div className='bg-white rounded-md border border-black p-4 flex flex-col items-center shadow-xl'>
+
+      {/* Profile Image */}
       <div id='ProfileImage' className='bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'>
         <Image
         src={props.image}
@@ -23,25 +25,32 @@ const ProfileCard = (props) => {
         />
       </div>
 
+      {/* Name */}
       <div id='Name' className='font-bold text-xl py-4'>{props.firstname} {props.lastname}</div>
+
+      {/* Flag */}
       <div id='Flag' className='border border-black drop-shadow'>
-      <Image
-      src={props.countryflag}
-      alt='flag'
-      width={100}
-      height={100}
-      />
+        <Image
+        src={props.countryflag}
+        alt='flag'
+        width={100}
+        height={100}
+        />
       </div>
+
+      {/* Hometown */}
       <div id='Hometown' className='font-semibold text-m'>{props.homecity}, {props.homecountry}</div>
 
+      {/* University Content*/}
       <div className='py-4 flex flex-col items-center'>
       <div id='University'>{props.university}</div>
       <div id='Major'>{props.major}</div>
       </div>
 
+      {/* Details Button */}
       <div id='Details' className='p-4 text-white'>
-        <button className='focus:ring-2 bg-gradient-to-r from-cyan-500 to-blue-500 drop-shadow  p-2' 
-        onClick={() => {props.getmodal(props.id); props.getmodalopen(setClick(true))}}>Details</button>
+        <button className='rounded-md focus:ring-2 bg-gradient-to-r from-cyan-500 to-blue-500 drop-shadow  p-2' 
+        onClick={() => {props.getmodal(props.id); props.getmodalopen(setClick(true))}}>View Profile</button>
       </div>
     </div>
   )

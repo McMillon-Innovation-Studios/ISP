@@ -14,9 +14,27 @@ export default function ProfileModal(props)
   if (isOpen == true)
   {
   return (
-    <div className = 'h-[50] w-[50] py-10 px-10 fixed inset-0 bg-black bg-opacity-30'>
-    <div className='bg-white rounded-md border border-black p-4 flex flex-col items-center'>
+    <div className = 'py-16 px-10 fixed inset-0 bg-black bg-opacity-30'>
+
       
+    <div className='w-[650px] mx-auto bg-white rounded-md border border-black p-5 shadow-2xl'>
+    
+    {/* Close Button */}
+    <div className="flex flex-col items-end">
+      <Image
+        src={'/closebutton.png'}
+        alt='profile'
+        width={30}
+        height={30}
+        className="cursor-pointer"
+        onClick={() => {setOpen(false)}}
+        priority
+        />
+        </div>
+
+        
+    <div className="flex flex-col items-center">
+      {/* Profile Image */}
       <div id='ProfileImage' className='bg-gradient-to-r from-cyan-500 to-blue-500  rounded-full drop-shadow-lg'>
         <Image
         src={props.image}
@@ -28,9 +46,9 @@ export default function ProfileModal(props)
         />
       </div>
 
-      <div id='Name' className='font-bold text-xl py-4'>{props.firstname} {props.lastname}</div>
+      {/* Name & Flag */}
+      <div id='Name' className='font-bold text-2xl py-4'>{props.firstname} {props.lastname}</div>
       <div id='Flag' className='border border-black drop-shadow'>
-
       <Image
       src={props.countryflag}
       alt='flag'
@@ -40,22 +58,30 @@ export default function ProfileModal(props)
       </div>
       <div id='Hometown' className='font-semibold text-m'>{props.homecity}, {props.homecountry}</div>
 
+      {/* University & Major */}
       <div className='py-4 flex flex-col items-center'>
       <div id='University'>{props.university}</div>
       <div id='Major'>{props.major}</div>
       </div>
 
-      <div id='Details' className='p-4'>
+      {/* Details */}
+      <div id='Details' className='px-16 pb-7 pt-1 text-[15px]'>
         {props.details}
       </div>
 
-      <div className='py-2 px-3 h-10 w-96 bg-blue-500'>
-      <input className='bg-grey rounded-md w-80' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
-      </div>
 
-      <div className='grid grid-cols-2 content-center'>
-      <button className='px-5 bg-green-500 text-white h-10 w-20' onClick={() => {props.childgetmodal(modalMessage, props.firstname); setOpen(false)}}>Send</button>
-      <button className='bg-red-500 text-white h-10 w-20' onClick={() => {setOpen(false)}}>Exit</button>
+      {/* Send Message */}
+      <div className="text-[19px] font-bold">
+        Connect with Mentor
+      </div>
+      <div className="p-4">
+        {/* Note to Self (Josh): Could also put w-96*/}
+        <input className='pl-2 bg-grey rounded-md w-[500px] h-[40px] bg-sky-50 border border-slate-300' type='text' placeholder="Message" value={modalMessage} onChange={e => setmodalMessage(e.target.value)}></input>
+      </div>
+        <div className="pb-8">
+        <button className='h-9 w-28 rounded-[20px] text-[15px] border-2 border-blue-600 text-blue-600 ' onClick={() => {props.childgetmodal(modalMessage, props.firstname); setOpen(false)}}>Send</button>
+        </div>
+      
       </div>
     </div>
     </div>
