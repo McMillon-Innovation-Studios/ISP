@@ -27,6 +27,7 @@ const Chat = ({user, selectedChatroom}) => {
         }
       }, [messages]);
 
+    // Get Messages
     useEffect(()=>{
          if(!chatRoomId){
             return;
@@ -38,6 +39,7 @@ const Chat = ({user, selectedChatroom}) => {
          return unsubscribe;
     }, [chatRoomId]);
 
+    // Send A Message
     const sendMessage = async(e) => {
         const messageCollection = collection(firestore, 'messages');
         if(message === '' && image == '' ){

@@ -18,6 +18,7 @@ import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs,
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import ChatProfiles from './components/ChatProfiles'
+import ConnectProfileCards from './components/ConnectProfileCards'
 
 
 let nextID = 0;
@@ -85,16 +86,17 @@ export default function Home() {
     // Check if chatroom already exists
     const existingChatroom = query(collection(firestore,'chatrooms'),where('users','==',[user.id,userData.id]));
     const existingChatroom2 = query(collection(firestore,'chatrooms'),where('users','==',[userData.id,user.id]));
-    console.log("users: ", users);
-    console.log("user id: ", user.id);
-    console.log("userData.id: ", userData.id);
 
-
+    console.log("user.id", user.id);
+    console.log('userData.id:', userData.id)
     try{
+      console.log("Checkpoint #1");
       // FIND OUT IF THERE IS A BETTER WAY TO COMBINE EXISTINGCHATROOMSNAPSHOT AND EXISTINGCHATROOM2SNAPSHOT
       const existingChatroomSnapshot = await getDocs(existingChatroom);
       const existingChatroomSnapshot2 = await getDocs(existingChatroom2);
       router.push("/testmessage")
+
+      console.log("Checkpoint #2");
 
       if(existingChatroomSnapshot.docs.length > 0 || existingChatroomSnapshot2.docs.length) {
         console.log('Chatroom already exists');
@@ -107,12 +109,15 @@ export default function Home() {
         [user.id]:user,
       }
 
+      console.log("Checkpoint #3");
+
       const chatroomData = {
         users:[user.id, userData.id],
         usersData,
         timestamp:serverTimestamp(),
         lastMessage:null,
       }
+      console.log("Checkpoint #4");
 
       const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
       console.log('chatroom created with id', chatroomRef.id);
@@ -145,16 +150,21 @@ export default function Home() {
       <Hero />
 
       {/* New Feature */}
-      <div className="h-[500px] bg-green-600">
+      <div className="h-[1500px] bg-green-600">
               {
                 loading ? <p>Loading</p> :
                 users.map((user)=>(
                   user.id !== userData?.id &&
-                  <div key={user.id} onClick={()=>{createChat(user)}}>
-                  <ChatProfiles
+                  <div key={user.id}>
+                  {/* <ChatProfiles
                   name={user.name}
                   latestMessageText="Hello"
                   time="00:00"
+                  /> */}
+                  <ConnectProfileCards
+                  user={user}
+                  userData={userData}
+                  createChat={createChat}
                   />
                   </div>
                   ))
