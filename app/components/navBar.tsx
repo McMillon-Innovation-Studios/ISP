@@ -100,7 +100,7 @@ const NavBar = () => {
 
             {
                 user != null && (<>   
-                <div className="col-start-12 flex flex-row items-center">
+                <div className="col-start-11 flex flex-row items-center">
                     <Image 
                     className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
                     src= "/question.png"
@@ -109,7 +109,7 @@ const NavBar = () => {
                     height={100}
                     />
                     <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn m-1 w-[70px]">Me</div>
+                        <div tabIndex={0} role="button" className="btn m-1 w-[100px]">{user.name}</div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li><a>Edit Profile</a></li>
                             <li><a onClick={handleLogout}>Log Out</a></li>

@@ -69,6 +69,7 @@ export default function Home() {
   }, [auth, router]); 
 
   // LEARN HOW TO GET THE SAME FUNCTION FROM CHATSIDEBAR.TSX
+  // Get All Users
   useEffect(()=>{
     setLoading(true);
     const tastQuery = query(collection(firestore, 'users'));
@@ -113,8 +114,6 @@ export default function Home() {
         [user.id]:user,
       }
 
-     
-
       const chatroomData = {
         users:[user.id, userData.id],
         usersData,
@@ -122,7 +121,6 @@ export default function Home() {
         lastMessage:null,
       }
       
-
       const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
       console.log('chatroom created with id', chatroomRef.id);
       //setActiveTab("chatrooms");
@@ -131,11 +129,6 @@ export default function Home() {
         console.log("Error creating or checking chatroom:", err);
       }
     }
-
-
-
-
-
 
 
     // **************************

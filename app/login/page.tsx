@@ -48,6 +48,7 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth,email,password);
             const user = userCredential.user;
 
+            console.log("Signed In:", userCredential);
             if(user){
                 router.push('/');
             }
@@ -60,6 +61,7 @@ const Login = () => {
         setLoading(false);
     }
 
+    
     return (
         <div>
             <NavBar/>

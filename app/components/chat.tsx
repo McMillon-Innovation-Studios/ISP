@@ -5,12 +5,14 @@ import ChatInput from './ChatInput'
 import MessageCard from './MessageCard'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState, useEffect, useRef } from 'react'
-import { firestore } from '@/lib/firebase'
+import { app, firestore } from '@/lib/firebase'
 import { addDoc, collection, doc, serverTimestamp, onSnapshot, query, where, orderBy, updateDoc } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 
 const Chat = ({user, selectedChatroom}) => {
     
+    const auth = getAuth(app);
     const me = selectedChatroom?.myData;
     const other = selectedChatroom?.otherData;
     const chatRoomId = selectedChatroom?.id;
@@ -19,6 +21,7 @@ const Chat = ({user, selectedChatroom}) => {
     const[messages,setMessages]=useState([]);
     const[image, setImage]=useState('');
     const messagesContainerRef = useRef(null);
+
 
     useEffect(() => {
         // Scroll to the bottom when messages change
@@ -37,6 +40,7 @@ const Chat = ({user, selectedChatroom}) => {
             const messagesData = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
             setMessages(messagesData);
          });
+         
          return unsubscribe;
     }, [chatRoomId]);
 
@@ -94,10 +98,12 @@ const Chat = ({user, selectedChatroom}) => {
                 </div>
                 <div className="p-2 flex-col">
                     <div className="font-bold">
-                        Name
+                        {
+                            other ? <p>{other.name}</p> : <p>???</p>
+                        }
                     </div>
                     <div className="text-slate-400">
-                        Last online 5 mins ago
+                            Last online 5 mins ago
                     </div>
                 </div>
             </div>
