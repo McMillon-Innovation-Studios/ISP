@@ -11,6 +11,15 @@ import Hero from './components/hero'
 import ConfirmModal from './components/ConfirmModal'
 import { Talks } from './talks'
 
+// New Feature
+import { useEffect } from 'react'
+import { firestore, app } from '@/lib/firebase'
+import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs, doc, getDoc } from 'firebase/firestore'
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import ChatProfiles from './components/ChatProfiles'
+
+
 let nextID = 0;
 let messageArray = []
 let message = ""
@@ -24,6 +33,98 @@ export default function Home() {
   const [modalName, setmodalName] = useState('')
   const [newMessage, setNewMessage] = useState('')
   const [messageArray, setMessageArray] = useState([])
+
+  // New Feature
+  const [loading,setLoading]=useState(false);
+  const[loading2,setLoading2]=useState(false);
+  const[users, setUsers]=useState([]);
+  const[userChatrooms,setUserChatrooms]=useState([]);
+  const router = useRouter();
+  const auth = getAuth(app);
+  const [userData, setUser] = useState({});
+  
+  // LEARN HOW TO GET THE SAME FUNCTION FROM TESTMESSAGE
+  useEffect(() => {
+    // Use onAuthStateChanged to listen for changes in authentication state
+    const unsubscribe = onAuthStateChanged(auth, async (userData) => {
+      if (userData) {
+        const docRef = doc(firestore, 'users', userData.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            const data = ({ id: docSnap.id, ...docSnap.data() })
+            setUser(data);
+        } else {
+          console.log('No such document!');
+        }
+      } else {
+        setUser({});
+        //router.push('/login');
+      }
+    });
+    return () => unsubscribe();
+  }, [auth, router]); 
+
+  // LEARN HOW TO GET THE SAME FUNCTION FROM CHATSIDEBAR.TSX
+  useEffect(()=>{
+    setLoading(true);
+    const tastQuery = query(collection(firestore, 'users'));
+
+    const unsubscribe = onSnapshot(tastQuery, (querySnapshot) => {
+      const users = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUsers(users);
+      setLoading(false);
+    });
+  }, [])
+
+  // LEARN HOW TO GET THE SAME FUNCTION FROM CHATSIDEBAR.TSX
+  // Create a chatroom
+  const createChat = async(user)=>{
+    // Check if chatroom already exists
+    const existingChatroom = query(collection(firestore,'chatrooms'),where('users','==',[user.id,userData.id]));
+    const existingChatroom2 = query(collection(firestore,'chatrooms'),where('users','==',[userData.id,user.id]));
+    console.log("users: ", users);
+    console.log("user id: ", user.id);
+    console.log("userData.id: ", userData.id);
+
+
+    try{
+      // FIND OUT IF THERE IS A BETTER WAY TO COMBINE EXISTINGCHATROOMSNAPSHOT AND EXISTINGCHATROOM2SNAPSHOT
+      const existingChatroomSnapshot = await getDocs(existingChatroom);
+      const existingChatroomSnapshot2 = await getDocs(existingChatroom2);
+      router.push("/testmessage")
+
+      if(existingChatroomSnapshot.docs.length > 0 || existingChatroomSnapshot2.docs.length) {
+        console.log('Chatroom already exists');
+        return;
+      }
+
+      //chatroom does not exist, create one
+      const usersData = {
+        [userData.id]:userData,
+        [user.id]:user,
+      }
+
+      const chatroomData = {
+        users:[user.id, userData.id],
+        usersData,
+        timestamp:serverTimestamp(),
+        lastMessage:null,
+      }
+
+      const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
+      console.log('chatroom created with id', chatroomRef.id);
+      //setActiveTab("chatrooms");
+
+    }catch(err){
+        console.log("Error creating or checking chatroom:", err);
+      }
+    }
+
+  console.log("Users: ", users);
+  
 
   const getModalID = (id) => {
     setmodalID(id)
@@ -42,7 +143,25 @@ export default function Home() {
     <body>
       <NavBar />
       <Hero />
-    
+
+      {/* New Feature */}
+      <div className="h-[500px] bg-green-600">
+              {
+                loading ? <p>Loading</p> :
+                users.map((user)=>(
+                  user.id !== userData?.id &&
+                  <div key={user.id} onClick={()=>{createChat(user)}}>
+                  <ChatProfiles
+                  name={user.name}
+                  latestMessageText="Hello"
+                  time="00:00"
+                  />
+                  </div>
+                  ))
+                
+              }
+      </div>
+
     <div>
       <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>
       <div className="grid grid-cols-5 content-center py-8 bg-white">
