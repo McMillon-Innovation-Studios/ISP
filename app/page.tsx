@@ -14,7 +14,7 @@ import { Talks } from './talks'
 // New Feature
 import { useEffect } from 'react'
 import { firestore, app } from '@/lib/firebase'
-import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs, doc, getDoc } from 'firebase/firestore'
+import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs, doc, getDoc, orderBy, updateDoc } from 'firebase/firestore'
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import ChatProfiles from './components/ChatProfiles'
@@ -43,6 +43,9 @@ export default function Home() {
   const router = useRouter();
   const auth = getAuth(app);
   const [userData, setUser] = useState({});
+
+  // SENDMESSAGEANDCREATECHATROOM FEATURE
+  const[messages,setMessages]=useState([]);
   
   // LEARN HOW TO GET THE SAME FUNCTION FROM TESTMESSAGE
   useEffect(() => {
@@ -89,14 +92,15 @@ export default function Home() {
 
     console.log("user.id", user.id);
     console.log('userData.id:', userData.id)
+
     try{
-      console.log("Checkpoint #1");
+      
       // FIND OUT IF THERE IS A BETTER WAY TO COMBINE EXISTINGCHATROOMSNAPSHOT AND EXISTINGCHATROOM2SNAPSHOT
       const existingChatroomSnapshot = await getDocs(existingChatroom);
       const existingChatroomSnapshot2 = await getDocs(existingChatroom2);
       router.push("/testmessage")
 
-      console.log("Checkpoint #2");
+      
 
       if(existingChatroomSnapshot.docs.length > 0 || existingChatroomSnapshot2.docs.length) {
         console.log('Chatroom already exists');
@@ -109,7 +113,7 @@ export default function Home() {
         [user.id]:user,
       }
 
-      console.log("Checkpoint #3");
+     
 
       const chatroomData = {
         users:[user.id, userData.id],
@@ -117,7 +121,7 @@ export default function Home() {
         timestamp:serverTimestamp(),
         lastMessage:null,
       }
-      console.log("Checkpoint #4");
+      
 
       const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
       console.log('chatroom created with id', chatroomRef.id);
@@ -128,7 +132,98 @@ export default function Home() {
       }
     }
 
-  console.log("Users: ", users);
+
+
+
+
+
+
+    // **************************
+    // WORKING ON NEW FEATURE SENDMESSAGEANDCREATECHAT
+    // **************************
+
+
+    const sendMessageAndCreateChat = async(user, message)=>{
+      // Check if chatroom already exists
+      const existingChatroom = query(collection(firestore,'chatrooms'),where('users','==',[user.id,userData.id]));
+      const existingChatroom2 = query(collection(firestore,'chatrooms'),where('users','==',[userData.id,user.id]));
+  
+      console.log("user.id", user.id);
+      console.log('userData.id:', userData.id)
+  
+      try{
+        console.log("Checkpoint #1");
+        // FIND OUT IF THERE IS A BETTER WAY TO COMBINE EXISTINGCHATROOMSNAPSHOT AND EXISTINGCHATROOM2SNAPSHOT
+        const existingChatroomSnapshot = await getDocs(existingChatroom);
+        const existingChatroomSnapshot2 = await getDocs(existingChatroom2);
+        router.push("/testmessage")
+  
+        console.log("Checkpoint #2");
+  
+        if(existingChatroomSnapshot.docs.length > 0 || existingChatroomSnapshot2.docs.length) {
+          console.log('Chatroom already exists');
+          console.log("existinChatroomSnapshot: ", existingChatroomSnapshot);
+          console.log("existingChatroomSnapshot2: ", existingChatroomSnapshot2);
+          return;
+        }
+  
+        //chatroom does not exist, create one
+        const usersData = {
+          [userData.id]:userData,
+          [user.id]:user,
+        }
+  
+        console.log("Checkpoint #3");
+  
+        const chatroomData = {
+          users:[user.id, userData.id],
+          usersData,
+          timestamp:serverTimestamp(),
+          lastMessage:null,
+        }
+        console.log("Checkpoint #4");
+  
+        const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
+        console.log('chatroom created with id', chatroomRef.id);
+        
+        // Get Messages
+        const getMessages = onSnapshot(query(collection(firestore,'messages'),where('chatRoomId','==',chatroomRef.id), orderBy('time','asc')),snapshot=>{
+          const messagesData = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+          setMessages(messagesData);
+        });
+
+        // Send Message
+        const messageCollection = collection(firestore, 'messages');
+        if(message === ''){
+            return;
+        }
+        try{
+            // Add a new message to the Firestore collection
+            const newMessage = {
+                chatRoomId:chatroomRef.id,
+                sender: userData.id,
+                content: message,
+                time: serverTimestamp(),
+            }
+            await addDoc(messageCollection, newMessage);
+
+            // // Update Chatroom Last Message
+            const chatroomRef2 = doc(firestore, 'chatrooms', chatroomRef.id);
+            await updateDoc(chatroomRef2,{
+                lastMessage:message ? message: 'Image',
+            });
+
+
+            
+        }catch(err){
+            console.log("Error Sending Message:", err);
+        }
+        
+
+      }catch(err){
+          console.log("Error creating or checking chatroom:", err);
+        }
+      }
   
 
   const getModalID = (id) => {
@@ -162,9 +257,10 @@ export default function Home() {
                   time="00:00"
                   /> */}
                   <ConnectProfileCards
-                  user={user}
+                  otherUser={user}
                   userData={userData}
                   createChat={createChat}
+                  sendMessageAndCreateChat={sendMessageAndCreateChat}
                   />
                   </div>
                   ))

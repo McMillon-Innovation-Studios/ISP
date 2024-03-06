@@ -94,6 +94,8 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
                         onClick={()=>{document.getElementById("my_modal_3").showModal()}}
                         />
                     </div>
+
+                    
                     <input 
                     className="my-2 w-full text-[18px] focus:outline-none border-none bg-transparent py-1" 
                     type='text' 

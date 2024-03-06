@@ -32,6 +32,7 @@ const Chat = ({user, selectedChatroom}) => {
          if(!chatRoomId){
             return;
          }
+         console.log("Chatroom id: ", chatRoomId);
          const unsubscribe = onSnapshot(query(collection(firestore,'messages'),where('chatRoomId','==',chatRoomId), orderBy('time','asc')),snapshot=>{
             const messagesData = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
             setMessages(messagesData);

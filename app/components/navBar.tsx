@@ -82,7 +82,7 @@ const NavBar = () => {
 
         <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
-            <Link href='/message'>Support</Link> 
+            <Link href='/'>Support</Link> 
             </div>
         </div>
 
