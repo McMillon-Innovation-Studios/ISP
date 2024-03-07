@@ -99,7 +99,7 @@ const Chat = ({user, selectedChatroom}) => {
                 <div className="p-2 flex-col">
                     <div className="font-bold">
                         {
-                            other ? <p>{other.name}</p> : <p>???</p>
+                            other ? <p>{other.firstName} {other.lastName}</p> : <p>???</p>
                         }
                     </div>
                     <div className="text-slate-400">

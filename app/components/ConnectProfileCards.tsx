@@ -4,11 +4,10 @@ import ConnectProfileModals from "./ConnectProfileModals";
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from "firebase/firestore";
 import { firestore } from "@/lib/firebase";
 
-const ConnectProfileCards = (props) => {
+const ConnectProfileCards = (props:any) => {
 
     // User is other user
     let otherUser = props.otherUser;
-
     // UserData is account currently logged in
     let userData = props.userData;
 
@@ -22,7 +21,7 @@ const ConnectProfileCards = (props) => {
         <Fragment>
         <div className="bg-white rounded-md border border-black p-4 flex flex-col items-center shadow-xl">
             <div>
-                <span className="font-bold">{otherUser.name}</span>
+                <span className="font-bold">{otherUser.firstName} {otherUser.lastName}</span>
             </div>
             <div>
                 Major Goes Here

@@ -12,7 +12,14 @@ import { doc, setDoc } from 'firebase/firestore'
 
 const Register = () => {
 
-    const[name, setName] = useState('');
+    const[firstName, setFirstName] = useState('');
+    const[lastName, setLastName] = useState('');
+    const[homeCountry, setCountry] = useState('');
+    const[homeCity, setCity] = useState('');
+    const[university, setUniversity] = useState('');
+    const[major, setMajor] = useState('');
+    const[biography, setBiography] = useState('');
+
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
@@ -26,8 +33,11 @@ const Register = () => {
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const newErrors={};
 
-        if(!name.trim()){
-            newErrors.name='Name is required!';
+        if(!firstName.trim()){
+            newErrors.firstName='First name is required!';
+        }
+        if(!lastName.trim()){
+            newErrors.lastName="Last name is required"
         }
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
@@ -59,8 +69,14 @@ const Register = () => {
 
             const docRef = doc(firestore, 'users', user.uid);
             await setDoc(docRef,{
-                name,
+                firstName,
+                lastName,
                 email,
+                homeCountry,
+                homeCity,
+                university,
+                major,
+                biography,
             })
             router.push('/');
             setErrors({});
@@ -72,6 +88,10 @@ const Register = () => {
         setLoading(false);
     }
 
+    function capitalizeFirstLetter(string:string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div>
             <NavBar/>
@@ -80,13 +100,22 @@ const Register = () => {
                 <span>Register</span>
                 <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
 
-                { /* Username */}
+                {/* First Name */}
                 <div>
-                <label>
-                    <span>Username</span>
-                </label>
-                <input type="text" placeholder="Enter Username" value={name} onChange={(e)=>setName(e.target.value)}/>
-                {errors.name && <span className='text-sm text-red-600'>{errors.name}</span>}
+                    <label>
+                        <span>First Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter First Name" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.firstName && <span className='text-sm text-red-600'>{errors.firstName}</span>}
+                </div>
+
+                {/* Last Name */}
+                <div>
+                    <label>
+                        <span>Last Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter Last Name" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.lastName && <span className='text-sm text-red-600'>{errors.lastName}</span>}
                 </div>
 
                 {/* Email */}
