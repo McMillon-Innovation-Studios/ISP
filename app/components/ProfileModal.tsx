@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { userProps } from '@/types'
 import { useRef } from 'react'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { basePath } from '@/helper.mjs'
 
 export default function ProfileModal(props) 
 {
@@ -22,7 +23,7 @@ export default function ProfileModal(props)
     {/* Close Button */}
     <div className="flex flex-col items-end">
       <Image
-        src={'/closebutton.png'}
+        src={`${basePath}/closeButton.png`}
         alt='profile'
         width={30}
         height={30}
@@ -37,7 +38,7 @@ export default function ProfileModal(props)
       {/* Profile Image */}
       <div id='ProfileImage' className='bg-gradient-to-r from-cyan-500 to-blue-500  rounded-full drop-shadow-lg'>
         <Image
-        src={props.image}
+        src={`${basePath}/${props.image}`}
         alt='profile'
         className='h-30 w-30 rounded-full'
         width={100}
@@ -50,8 +51,8 @@ export default function ProfileModal(props)
       <div id='Name' className='font-bold text-2xl py-4'>{props.firstname} {props.lastname}</div>
       <div id='Flag' className='border border-black drop-shadow'>
       <Image
-      src={props.countryflag}
-      alt='flag'
+        src={`${basePath}/${props.countryflag}`}
+        alt='flag'
       width={100}
       height={100}
       />

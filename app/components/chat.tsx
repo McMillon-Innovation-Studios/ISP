@@ -7,6 +7,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState, useEffect, useRef } from 'react'
 import { firestore } from '@/lib/firebase'
 import { addDoc, collection, doc, serverTimestamp, onSnapshot, query, where, orderBy, updateDoc } from 'firebase/firestore'
+import { basePath } from '@/helper.mjs'
 
 
 const Chat = ({user, selectedChatroom}) => {
@@ -86,7 +87,7 @@ const Chat = ({user, selectedChatroom}) => {
                 <div className="p-2 my-auto">
                     <Image 
                     className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-                    src= "/question.png"
+                    src={`${basePath}/question.png`}
                     alt='flag'
                     width={100}
                     height={100}

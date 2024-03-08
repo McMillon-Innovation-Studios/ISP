@@ -7,6 +7,7 @@ import { firestore, app} from '@/lib/firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
 import { doc, getDoc } from 'firebase/firestore';
+import { basePath } from '@/helper.mjs';
 
 
 
@@ -103,7 +104,8 @@ const NavBar = () => {
                 <div className="col-start-12 flex flex-row items-center">
                     <Image 
                     className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-                    src= "/question.png"
+                    src={`${basePath}/question.png`}
+
                     alt='flag'
                     width={100}
                     height={100}

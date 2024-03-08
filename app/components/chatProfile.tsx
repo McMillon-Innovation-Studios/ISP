@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { basePath } from '@/helper.mjs'
 
 // ************************************
 // DONT TOUCH THIS: OLD CHAT IMPLEMENTATION
@@ -15,7 +16,7 @@ const ChatProfile = (props) => {
         <div className="px-2 my-auto">
             <Image 
             className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-            src= "/question.png"
+            src={`${basePath}/question.png`}
             alt='flag'
             width={100}
             height={100}

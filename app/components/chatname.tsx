@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { basePath } from '@/helper.mjs'
 
 {/* Is this even being used yet? */}
 const chatName = () => {
@@ -9,7 +10,7 @@ const chatName = () => {
       <div className='flex-shrink-0'>
         <Image 
         className='h-10 w-10 rounded full'
-        src= {"/question.png"}
+        src={`${basePath}/question.png`}
         alt='flag'
         width={100}
         height={100}
