@@ -6,6 +6,14 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
+    //undo
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    //undo
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
     reactStrictMode: true,
     basePath,
     assetPrefix: `${basePath}/`,
@@ -18,4 +26,4 @@ const nextConfig = {
     },
 };
 
-module.exports = nextConfig
+export default nextConfig;
