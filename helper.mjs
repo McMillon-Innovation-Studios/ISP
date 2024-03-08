@@ -1,1 +1,1 @@
-export const basePath = (process.env.NODE_ENV === 'production') ? '/hello-world' : '';
+export const basePath = (process.env.NODE_ENV === 'production') ? '/ISP' : '';
