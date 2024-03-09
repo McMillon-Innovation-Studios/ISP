@@ -14,11 +14,12 @@ const Register = () => {
 
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
-    const[homeCountry, setCountry] = useState('');
-    const[homeCity, setCity] = useState('');
+    const[homeCountry, setHomeCountry] = useState('');
+    const[countryFlag, setCountryFlag] = useState('');
+    const[homeCity, setHomeCity] = useState('');
     const[university, setUniversity] = useState('');
     const[major, setMajor] = useState('');
-    const[biography, setBiography] = useState('');
+    const[bio, setBio] = useState('');
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -73,10 +74,12 @@ const Register = () => {
                 lastName,
                 email,
                 homeCountry,
+                countryFlag,
                 homeCity,
                 university,
                 major,
-                biography,
+                avatarUrl,
+                bio,
             })
             router.push('/');
             setErrors({});

@@ -111,7 +111,7 @@ const NavBar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn m-1 w-[100px]">{user.firstName} {user.lastName}</div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Edit Profile</a></li>
+                            <li><Link href="/editprofile">Edit Profile</Link></li>
                             <li><a onClick={handleLogout}>Log Out</a></li>
                         </ul>
                     </div>

@@ -36,7 +36,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
           return;
         }
     
-        const storageRef = ref(storage, `images/${file.name}`);
+        const storageRef = ref(storage, `chatroom_images/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
     
         uploadTask.on(
