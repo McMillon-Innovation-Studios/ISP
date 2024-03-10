@@ -97,7 +97,8 @@ const Register = () => {
 
     return (
         <div>
-            <NavBar/>
+            <NavBar
+            activeTab=""/>
             <div className=''>
                 
                 <span>Register</span>

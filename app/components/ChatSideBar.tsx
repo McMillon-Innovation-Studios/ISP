@@ -120,6 +120,7 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
                   <ChatProfiles
                     firstName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].firstName}
                     lastName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].lastName}
+                    avatarUrl={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].avatarUrl}
                     latestMessageText={chatroom.lastMessage}
                     time="00:00"
                   />
@@ -131,7 +132,7 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
           }
         </div>
         
-        <div>
+        {/* <div>
         {activeTab === 'users' && (<>
               {
                 loading ? <p>Loading...</p> : 
@@ -148,7 +149,7 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
               }
           </>)
           }
-        </div>
+        </div> */}
         
     </div>
   )

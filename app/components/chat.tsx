@@ -22,7 +22,6 @@ const Chat = ({user, selectedChatroom}) => {
     const[image, setImage]=useState('');
     const messagesContainerRef = useRef(null);
 
-
     useEffect(() => {
         // Scroll to the bottom when messages change
         if (messagesContainerRef.current) {
@@ -79,6 +78,8 @@ const Chat = ({user, selectedChatroom}) => {
         }
     }
 
+    console.log("Other: ", other);
+
   return(
     <div className="flex flex-col basis-3/4 border-y-2 border-l-2 border-slate-200 font-['Montserrat']">
 
@@ -86,15 +87,38 @@ const Chat = ({user, selectedChatroom}) => {
         <div className="bg-white h-16 border-b-2 border-slate-200 flex flex-row flex-initial items-center justify-between">
         
             {/* Left Side of Header (Photo + Name) */}
-            <div className="flex flex-row">
-                <div className="p-2 my-auto">
-                    <Image 
-                    className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-                    src= "/question.png"
-                    alt='flag'
-                    width={100}
-                    height={100}
-                    />
+            <div className="flex flex-row p-2">
+                <div className="relative flex flex-row items-center w-10 h-10 my-auto object-cover overflow-hidden rounded-full">
+                    {
+                        other ?
+                        (<>
+                            {
+                            other.avatarUrl ?
+                            <Image 
+                            src= {other.avatarUrl}
+                            alt='Avatar'
+                            width={200}
+                            height={200}
+                            />
+                            :
+                            <Image 
+                            className='full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                            src= "/question.png"
+                            alt='flag'
+                            width={100}
+                            height={100}
+                            />
+                            }
+                        </>)
+                        :
+                            <Image 
+                            className='full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                            src= "/question.png"
+                            alt='flag'
+                            width={100}
+                            height={100}
+                            />
+                    }
                 </div>
                 <div className="p-2 flex-col">
                     <div className="font-bold">

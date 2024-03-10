@@ -5,9 +5,7 @@ import Image from 'next/image'
 // TESTING FOR FIREBASE
 // *******************
 
-const ChatProfiles = ({firstName, lastName, latestMessageText,time}) => {
-
-    console.log("Last Name:", lastName);
+const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) => {
 
   return (
 
@@ -15,14 +13,24 @@ const ChatProfiles = ({firstName, lastName, latestMessageText,time}) => {
 
         {/* Left Side */}
         <div className="flex flex-row">
-            <div className="px-2 my-auto">
-                <Image 
-                className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-                src= "/question.png"
-                alt='flag'
-                width={100}
-                height={100}
-                />
+            <div className="relative ml-3 flex flex-row items-center w-12 h-12 my-auto object-cover overflow-hidden rounded-full">
+                {
+                    avatarUrl ?
+                    <Image 
+                    src= {avatarUrl}
+                    alt='avatar'
+                    width={100}
+                    height={100}
+                    />
+                    :
+                    <Image 
+                    className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                    src= "/question.png"
+                    alt='flag'
+                    width={100}
+                    height={100}
+                    />
+                }
             </div>
             <div className="p-2 flex-col">
                 <div className="font-bold group-hover:text-white">

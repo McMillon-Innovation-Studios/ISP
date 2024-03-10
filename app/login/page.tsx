@@ -64,7 +64,8 @@ const Login = () => {
     
     return (
         <div>
-            <NavBar/>
+            <NavBar
+            activeTab=""/>
             <div className=''>
                 
                 <span>Log In</span>

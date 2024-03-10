@@ -8,6 +8,7 @@ const ConnectProfileCards = (props:any) => {
 
     // User is other user
     let otherUser = props.otherUser;
+
     // UserData is account currently logged in
     let userData = props.userData;
 
@@ -18,7 +19,6 @@ const ConnectProfileCards = (props:any) => {
 
     return (
 
-        <Fragment>
         <div className="bg-white rounded-md border border-black p-4 flex flex-col items-center shadow-xl">
             <div>
                 <span className="font-bold">{otherUser.firstName} {otherUser.lastName}</span>
@@ -43,7 +43,6 @@ const ConnectProfileCards = (props:any) => {
             />
             </div>
         </div>
-        </Fragment>
     )
 }
 

@@ -6,6 +6,8 @@ import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { app, firestore } from "@/lib/firebase";
 import { query, collection, where, updateDoc, doc, getDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { update } from "firebase/database";
+import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
     
@@ -22,44 +24,17 @@ const EditProfile = () => {
     const[major, setMajor] = useState('');
     const[bio, setBio] = useState('');
     const[avatarUrl,setAvatarUrl] = useState('');
-
-    // Images
+    
+    const auth = getAuth(app);
     const storage = getStorage(app);
+    const router = useRouter();
     const [file, setFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(null);
-    const [imagePreview,setImagePreview] = useState(null);
-
-    // Other
-    const[refreshMessage, setRefreshMessage] = useState(false);
-    const auth = getAuth(app);
-
-    // May use later
+    const [imagePreview,setImagePreview] = useState('');
     const[loading, setLoading] = useState(false);
 
-    // Used for First and Last Name
     function capitalizeFirstLetter(string:string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    // Validates Updated Changes to User's Data
-    const validate = (updateVariable, updateValue) => {
-        switch(updateVariable){
-            case "firstName":
-            case "lastName":
-            case "homeCountry":
-            case "countryFlag":
-            case "homeCity":
-            case "university":
-            case "major":
-            case "bio":
-                if(!updateValue){
-                    return false;
-                }
-                return true;
-            default:
-                console.log("Error validating edited profile for " + updateVariable);
-                return false;
-        }
     }
     
     // Get User Info
@@ -77,51 +52,48 @@ const EditProfile = () => {
             }
           } else {
             setUser({});
-            //router.push('/login');
           }
         });
         return () => unsubscribe();
       }, []); 
 
+      // Retrieve updated data
+      const retrieveForm = () => {
+        const update = {};
+        firstName ? update.firstName = firstName : update.firstName = user.firstName;
+        lastName ? update.lastName = lastName : update.lastName = user.lastName;
+        homeCountry ? update.homeCountry = homeCountry : update.homeCountry = user.homeCountry;
+        homeCity ? update.homeCity = homeCity : update.homeCity = user.homeCity;
+        homeCountry ? update.countryFlag = "/" + homeCountry + ".png" : update.countryFlag = user.countryFlag;
+        university ? update.university = university : update.university = user.university;
+        major ? update.major = major : update.major = user.major;
+        bio ? update.bio = bio : update.bio = user.bio;
+        imagePreview ? update.avatarUrl = imagePreview : update.avatarUrl = user.avatarUrl;
+        return update;
+      }
 
-    // Update User's Data
-    const updateUser = (updateVariable:string, updateValue, setUpdateValue) => {
-
-        // Retrieves user info
+    const updateForm = async(e) => {
+        e.preventDefault();
         onAuthStateChanged(auth, async (user) => {
             if(user)
             {
-                // Validates input
-                if(updateVariable != "avatarUrl"){
-                    if(!validate(updateVariable, updateValue)){
-                        return;
-                    }
-                }
+                const updateData = retrieveForm();
 
                 // Changes User info
                 const docRef = doc(firestore, "users", user.uid);
                 updateDoc(docRef, {
-                    [updateVariable]: updateValue
+                    firstName: updateData.firstName,
+                    lastName: updateData.lastName,
+                    homeCountry: updateData.homeCountry,
+                    homeCity: updateData.homeCity,
+                    avatarUrl: updateData. avatarUrl,
+                    countryFlag: updateData.countryFlag,
+                    university: updateData.university,
+                    major: updateData.major,
+                    bio: updateData.bio,
                 })
-                console.log("updateValue: " + updateValue);
-                setUpdateValue('');
-
-                // Changes Gets flag and changes flag
-                if(updateVariable == "homeCountry")
-                {
-                    // Unreliable method to get image if flag data changes; could change in future
-                    const flag = "/" + updateValue + ".png";
-                    updateUser("countryFlag", flag, setCountryFlag);
-                }
-
-                // Updates Flag
-                if(updateVariable == "countryFlag")
-                {
-                    setCountryFlag(updateValue);
-                }
-                console.log(updateVariable + " Successfully Changed");
-                setRefreshMessage(true);
-                
+                console.log("Profile Updated Successfully");
+                router.push("/"); //<--- I want to refresh page to reload content but router.refresh() does not work
             }
             else {
                 console.log("Update " + updateVariable + " Error");
@@ -129,23 +101,13 @@ const EditProfile = () => {
         });
     }
 
-
-    // Handles Image Change
-    const handleFileChange = (e) => {
+    // Handle Avatar Upload
+    const handleUpload = async(e) => {
+        setLoading(true);
         const file = e.target.files[0];
-        if(file){
-            setFile(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-
-    const handleUpload = async() => {
         if (!file) {
             console.error('No file selected.');
+            setLoading(false);
             return;
         }
 
@@ -174,26 +136,27 @@ const EditProfile = () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
             //setAvatarUrl(downloadURL);  <-- WHY DOES THIS NOT WORK???
-            updateUser("avatarUrl", downloadURL, setAvatarUrl);
+            setImagePreview(downloadURL);
             });
         }
         );
+        setLoading(false);
     }
 
     return(
         <div>
-            <NavBar/>
+            <NavBar
+            activeTab=""/>
             <div className="flex flex-col gap-5">
                 <h1>Edit Profile</h1>
                 
+                <form onSubmit={updateForm}>
                 {/* Change First Name */}
                 <div>
                     <label>
                         <span>First Name</span>
                     </label>
                     <input type="text" placeholder={user.firstName} value={firstName} onChange ={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}></input>
-                    <button className="border border-black" onClick={()=>updateUser("firstName", firstName, setFirstName)}>Update</button>
-                    
                 </div>
 
                 {/* Change Last Name */}
@@ -202,7 +165,6 @@ const EditProfile = () => {
                         <span>Last Name</span>
                     </label>
                     <input type="text" placeholder={user.lastName} value={lastName} onChange ={(e)=>setLastName(e.target.value)}></input>
-                    <button className="border border-black" onClick={()=>updateUser("lastName", lastName, setLastName)}>Update</button>
                 </div>
 
                 {/* Change Home Country */}
@@ -217,7 +179,6 @@ const EditProfile = () => {
                         <option value="Brazil">Brazil</option>
                         <option value="China">China</option>
                     </select>
-                    <button className="border border-black" onClick={()=>updateUser("homeCountry", homeCountry, setHomeCountry)}>Update</button>
                 </div>
 
                 {/* Country Flag */}
@@ -227,7 +188,7 @@ const EditProfile = () => {
                     </label>
                     <Image
                     alt={homeCountry}
-                    src={user.countryFlag}
+                    src={user.countryFlag ? user.countryFlag : "/UnknownFlag.png"}
                     width={100}
                     height={100}
                     />
@@ -240,7 +201,6 @@ const EditProfile = () => {
                         <span>Home City</span>
                     </label>
                     <input type="text" placeholder={user.homeCity ? user.homeCity : "Change Home City"} value={homeCity} onChange ={(e)=>setHomeCity(e.target.value)}></input>
-                    <button className="border border-black" onClick={()=>updateUser("homeCity", homeCity, setHomeCity)}>Update</button>
                 </div>
 
                 {/* Change University */}
@@ -249,7 +209,6 @@ const EditProfile = () => {
                         <span>University</span>
                     </label>
                     <input type="text" placeholder={user.university ? user.university : "Change University"} value={university} onChange ={(e)=>setUniversity(e.target.value)}></input>
-                    <button className="border border-black" onClick={()=>updateUser("university", university, setUniversity)}>Update</button>
                 </div>
 
                 {/* Change Major */}
@@ -258,7 +217,6 @@ const EditProfile = () => {
                         <span>Major</span>
                     </label>
                     <input type="text" placeholder={user.major ? user.major : "Change Major"} value={major} onChange ={(e)=>setMajor(e.target.value)}></input>
-                    <button className="border border-black" onClick={()=>updateUser("major", major, setMajor)}>Update</button>
                 </div>
 
                 {/* Change Biography */}
@@ -267,7 +225,6 @@ const EditProfile = () => {
                         <span>Biography</span>
                     </label>
                     <input type="text" placeholder={user.bio ? user.bio : "Change Bio"} value={bio} onChange ={(e)=>setBio(e.target.value)}></input>
-                    <button className="border border-black" onClick={()=>updateUser("bio", bio, setBio)}>Update</button>
                 </div>
 
                 {/* Change Avatar */}
@@ -280,11 +237,16 @@ const EditProfile = () => {
 
                     {/* Display Uploaded Avatar */}
                     {imagePreview && <Image src={imagePreview} alt='New Avatar' width={60} height={60}/>}
-                    <input type="file" onChange={handleFileChange}/>
-                    <button className="border border-black" onClick={()=>{handleUpload()}}>Update</button>
+                    <input type="file" onChange={handleUpload}/>
+                    {/* <button className="border border-black" onClick={()=>{handleUpload()}}>Update</button> */}
                 </div>
 
-                { refreshMessage && <span className='text-sm text-red-500'>Refresh the page to see changes</span>}
+                <button type="submit">
+                    {
+                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Save & Update"
+                    }
+                </button>
+                </form>
 
             </div>
         </div>
