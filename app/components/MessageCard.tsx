@@ -1,9 +1,8 @@
 import moment from 'moment';
 import React from 'react'
 import Image from 'next/image';
-import { basePath } from '@/helper.mjs';
 
-const MessageCard = ({message,me,other}) => {
+const MessageCard = ({{message}: string,me,other}) => {
     const isMessageFromMe = message.sender === me.id;
 
     // Get Time of Message Sent
@@ -18,7 +17,7 @@ const MessageCard = ({message,me,other}) => {
             <div className={`p-2 rounded-md m-2 max-w-[500px] break-words ${isMessageFromMe ? 'bg-blue-600 text-white' : 'bg-white text-black'}`}>
                 {
                     message.image && (
-                        <img src={`${basePath}/${message.image}`} className='max-h-60 w-auto rounded-md object-contain mb-2' />
+                        <img src={message.image} className='max-h-60 w-auto rounded-md object-contain mb-2' />
                     )
                 }
                 <p className={`text-lg font-medium ${isMessageFromMe ? 'text-right' : 'text-left'}`}>{message.content}</p>

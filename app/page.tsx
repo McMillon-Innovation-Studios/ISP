@@ -69,6 +69,7 @@ export default function Home() {
   }, [auth, router]); 
 
   // LEARN HOW TO GET THE SAME FUNCTION FROM CHATSIDEBAR.TSX
+  // Get All Users
   useEffect(()=>{
     setLoading(true);
     const tastQuery = query(collection(firestore, 'users'));
@@ -113,8 +114,6 @@ export default function Home() {
         [user.id]:user,
       }
 
-     
-
       const chatroomData = {
         users:[user.id, userData.id],
         usersData,
@@ -122,7 +121,6 @@ export default function Home() {
         lastMessage:null,
       }
       
-
       const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
       console.log('chatroom created with id', chatroomRef.id);
       //setActiveTab("chatrooms");
@@ -131,16 +129,6 @@ export default function Home() {
         console.log("Error creating or checking chatroom:", err);
       }
     }
-
-
-
-
-
-
-
-    // **************************
-    // WORKING ON NEW FEATURE SENDMESSAGEANDCREATECHAT
-    // **************************
 
 
     const sendMessageAndCreateChat = async(user, message)=>{
@@ -152,13 +140,10 @@ export default function Home() {
       console.log('userData.id:', userData.id)
   
       try{
-        console.log("Checkpoint #1");
         // FIND OUT IF THERE IS A BETTER WAY TO COMBINE EXISTINGCHATROOMSNAPSHOT AND EXISTINGCHATROOM2SNAPSHOT
         const existingChatroomSnapshot = await getDocs(existingChatroom);
         const existingChatroomSnapshot2 = await getDocs(existingChatroom2);
         router.push("/testmessage")
-  
-        console.log("Checkpoint #2");
   
         if(existingChatroomSnapshot.docs.length > 0 || existingChatroomSnapshot2.docs.length) {
           console.log('Chatroom already exists');
@@ -173,15 +158,12 @@ export default function Home() {
           [user.id]:user,
         }
   
-        console.log("Checkpoint #3");
-  
         const chatroomData = {
           users:[user.id, userData.id],
           usersData,
           timestamp:serverTimestamp(),
           lastMessage:null,
         }
-        console.log("Checkpoint #4");
   
         const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
         console.log('chatroom created with id', chatroomRef.id);
@@ -212,14 +194,11 @@ export default function Home() {
             await updateDoc(chatroomRef2,{
                 lastMessage:message ? message: 'Image',
             });
-
-
             
         }catch(err){
             console.log("Error Sending Message:", err);
         }
         
-
       }catch(err){
           console.log("Error creating or checking chatroom:", err);
         }
@@ -241,21 +220,17 @@ export default function Home() {
 
   return (
     <body>
-      <NavBar />
+      <NavBar 
+      activeTab="Connect"/>
       <Hero />
 
-      {/* New Feature */}
+      {/* Test Feature */}
       <div className="h-[1500px] bg-green-600">
               {
-                loading ? <p>Loading</p> :
+                loading ? <p>Loading...</p> :
                 users.map((user)=>(
                   user.id !== userData?.id &&
                   <div key={user.id}>
-                  {/* <ChatProfiles
-                  name={user.name}
-                  latestMessageText="Hello"
-                  time="00:00"
-                  /> */}
                   <ConnectProfileCards
                   otherUser={user}
                   userData={userData}
@@ -267,6 +242,15 @@ export default function Home() {
                 
               }
       </div>
+
+      
+
+
+
+
+
+
+
 
     <div>
       <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>

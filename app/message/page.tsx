@@ -5,7 +5,6 @@ import chatName from '../components/chatname'
 import { Talks } from '../talks'
 import Image from 'next/image'
 import ChatProfile from '../components/chatProfile'
-import { basePath } from '@/helper.mjs'
 
 // ***************************************
 // DO NOT DELETE
@@ -28,7 +27,7 @@ export default function message () {
             
             <div className="pl-2 mx-auto">
               <Image
-              src={`${basePath}/menulogo.png`}
+              src={'/menulogo.png'}
               alt='profile'
               width={40}
               height={40} 
@@ -56,7 +55,7 @@ export default function message () {
             <div className="p-2">
               <Image 
               className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-              src={`${basePath}/question.png`}
+              src= "/question.png"
               alt='flag'
               width={100}
               height={100}
@@ -73,7 +72,7 @@ export default function message () {
             <div className="basis-1/2 flex flex-col items-end">
               <div>
             <Image 
-              src={`${basePath}/threedotsicon.png`}
+              src= "/threedotsicon.png"
               alt='flag'
               width={23}
               height={23}

@@ -8,6 +8,9 @@ import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs 
 import { getAuth, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 
+
+
+
 const ChatSideBar = ({userData, setSelectedChatroom}) => {
   const[activeTab, setActiveTab] = useState('chatrooms');
   const [loading,setLoading]=useState(false);
@@ -118,7 +121,9 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
                 userChatrooms.map((chatroom) => (
                   <div key={chatroom.id} onClick={()=>{openChat(chatroom)}}>
                   <ChatProfiles
-                    name={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].name}
+                    firstName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].firstName}
+                    lastName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].lastName}
+                    avatarUrl={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].avatarUrl}
                     latestMessageText={chatroom.lastMessage}
                     time="00:00"
                   />
@@ -130,7 +135,7 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
           }
         </div>
         
-        <div>
+        {/* <div>
         {activeTab === 'users' && (<>
               {
                 loading ? <p>Loading...</p> : 
@@ -147,7 +152,7 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
               }
           </>)
           }
-        </div>
+        </div> */}
         
     </div>
   )

@@ -38,7 +38,8 @@ const TestMessage = () => {
 
   if(user == null) return (
     <div>
-    <NavBar/>
+    <NavBar
+    activeTab="Message"/>
     <div>Login to start using Messages!</div>
     </div>
   );
@@ -47,7 +48,8 @@ const TestMessage = () => {
         <div className='m-0 h-screen'>
             <div className='flex flex-col h-screen'>
                 <div className='flex-initial'>
-                    <NavBar/>
+                    <NavBar
+                    activeTab="Message"/>
                 </div>
                 
                 <div className="flex-auto border flex flex-row">

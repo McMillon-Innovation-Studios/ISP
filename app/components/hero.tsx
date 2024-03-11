@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { basePath } from '@/helper.mjs'
 
 const Hero = () => {
   return (
@@ -33,7 +32,7 @@ const Hero = () => {
       {/* Hero Image */}
       <div className="basis-1/2 ">
         <Image
-        src={`${basePath}/hero.png`}
+        src={'/hero.png'}
         alt='profile'
         width={500}
         height={500}

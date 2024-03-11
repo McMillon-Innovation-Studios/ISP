@@ -10,18 +10,18 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[loggedIn, setLoggedIn] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{firstName: string; lastName: string; email: string; password: string; confirmPassword: string}>({firstName: '', lastName: '', email:'',password:'', confirmPassword:''});
+    const[loading, setLoading] = useState<boolean>(false);
+    const[loggedIn, setLoggedIn] = useState<boolean>(false);
+    const[avatarUrl,setAvatar] = useState<string>('');
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors: {firstName: string; lastName: string; email: string; password: string; confirmPassword: string} = {firstName: '', lastName: '', email:'',password:'', confirmPassword:''}
 
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
@@ -48,10 +48,11 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth,email,password);
             const user = userCredential.user;
 
+            console.log("Signed In:", userCredential);
             if(user){
                 router.push('/');
             }
-            setErrors({});
+            setErrors({firstName: '', lastName: '', email:'',password:'', confirmPassword:''});
 
             alert("Logged In Sucessfully :)");
         }catch(error){
@@ -60,9 +61,11 @@ const Login = () => {
         setLoading(false);
     }
 
+    
     return (
         <div>
-            <NavBar/>
+            <NavBar
+            activeTab=""/>
             <div className=''>
                 
                 <span>Log In</span>

@@ -12,22 +12,39 @@ import { doc, setDoc } from 'firebase/firestore'
 
 const Register = () => {
 
-    const[name, setName] = useState('');
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
+    const[firstName, setFirstName] = useState<string>('');
+    const[lastName, setLastName] = useState<string>('');
+    const[homeCountry, setHomeCountry] = useState<string>('');
+    const[countryFlag, setCountryFlag] = useState<string>('');
+    const[homeCity, setHomeCity] = useState<string>('');
+    const[university, setUniversity] = useState<string>('');
+    const[major, setMajor] = useState<string>('');
+    const[bio, setBio] = useState<string>('');
+
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
+    const[confirmPassword, setConfirmPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{firstName: string; lastName: string; email: string; password: string; confirmPassword: string}>({firstName: ' ', lastName: '', email:'', password:'',confirmPassword:''});
+    const[loading, setLoading] = useState<boolean>(false);
+    const[avatarUrl,setAvatar] = useState<string>('');
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors: {firstName: string, lastName: string, email: string, password: string, confirmPassword: string} = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        };
 
-        if(!name.trim()){
-            newErrors.name='Name is required!';
+        if(!firstName.trim()){
+            newErrors.firstName='First name is required!';
+        }
+        if(!lastName.trim()){
+            newErrors.lastName="Last name is required"
         }
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
@@ -59,11 +76,24 @@ const Register = () => {
 
             const docRef = doc(firestore, 'users', user.uid);
             await setDoc(docRef,{
-                name,
+                firstName,
+                lastName,
                 email,
+                homeCountry,
+                countryFlag,
+                homeCity,
+                university,
+                major,
+                avatarUrl,
+                bio,
             })
             router.push('/');
-            setErrors({});
+            setErrors({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''});
 
             alert("Registered sucessfully :)");
         }catch(error){
@@ -72,21 +102,35 @@ const Register = () => {
         setLoading(false);
     }
 
+    function capitalizeFirstLetter(string:string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div>
-            <NavBar/>
+            <NavBar
+            activeTab=""/>
             <div className=''>
                 
                 <span>Register</span>
                 <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
 
-                { /* Username */}
+                {/* First Name */}
                 <div>
-                <label>
-                    <span>Username</span>
-                </label>
-                <input type="text" placeholder="Enter Username" value={name} onChange={(e)=>setName(e.target.value)}/>
-                {errors.name && <span className='text-sm text-red-600'>{errors.name}</span>}
+                    <label>
+                        <span>First Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter First Name" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.firstName && <span className='text-sm text-red-600'>{errors.firstName}</span>}
+                </div>
+
+                {/* Last Name */}
+                <div>
+                    <label>
+                        <span>Last Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter Last Name" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.lastName && <span className='text-sm text-red-600'>{errors.lastName}</span>}
                 </div>
 
                 {/* Email */}

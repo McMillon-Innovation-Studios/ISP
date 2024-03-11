@@ -7,9 +7,11 @@ import { useState } from "react"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { app } from "@/lib/firebase"
 import EmojiPicker from 'emoji-picker-react';
-import { basePath } from "@/helper.mjs";
 
-const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
+
+
+
+const ChatInput = ({sendMessage, message , setMessage, image, setImage}) => {
 
     const storage = getStorage(app);
     const [file, setFile] = useState(null);
@@ -37,7 +39,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
           return;
         }
     
-        const storageRef = ref(storage, `images/${file.name}`);
+        const storageRef = ref(storage, `chatroom_images/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
     
         uploadTask.on(
@@ -115,7 +117,7 @@ const ChatInput = ({sendMessage, message, setMessage, image, setImage}) => {
             <dialog id='my_modal_3' className='modal'>
                 <div className='modal-box'>
                 <form method='dialog'>
-                    {imagePreview && <img src={`${basePath}${imagePreview}`} alt='Uploaded' className='max-h-60 w-60 mb-4' />}
+                    {imagePreview && <img src={imagePreview} alt='Uploaded' className='max-h-60 w-60 mb-4' />}
                     <input type='file' accept='image/*' onChange={handleFileChange} />
                     <div onClick={()=>{handleUpload()}} className='btn btn-sm btn-primary'>
                     Upload

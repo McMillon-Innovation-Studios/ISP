@@ -5,18 +5,23 @@ import ChatInput from './ChatInput'
 import MessageCard from './MessageCard'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState, useEffect, useRef } from 'react'
-import { firestore } from '@/lib/firebase'
+import { app, firestore } from '@/lib/firebase'
 import { addDoc, collection, doc, serverTimestamp, onSnapshot, query, where, orderBy, updateDoc } from 'firebase/firestore'
-import { basePath } from '@/helper.mjs'
+import { getAuth } from 'firebase/auth'
 
 
 const Chat = ({user, selectedChatroom}) => {
     
+    const auth = getAuth(app);
     const me = selectedChatroom?.myData;
     const other = selectedChatroom?.otherData;
     const chatRoomId = selectedChatroom?.id;
 
-    const[message,setMessage] = useState('');
+    
+
+    // Define a type with a single variable useState
+    const[message,setMessage] = React.useState<string>('');
+    
     const[messages,setMessages]=useState([]);
     const[image, setImage]=useState('');
     const messagesContainerRef = useRef(null);
@@ -38,13 +43,14 @@ const Chat = ({user, selectedChatroom}) => {
             const messagesData = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
             setMessages(messagesData);
          });
+         
          return unsubscribe;
     }, [chatRoomId]);
 
     // Send A Message
     const sendMessage = async(e) => {
         const messageCollection = collection(firestore, 'messages');
-        if(message === '' && image == '' ){
+        if(message == '' && image == '' ){
             return;
         }
         try{
@@ -76,6 +82,8 @@ const Chat = ({user, selectedChatroom}) => {
         }
     }
 
+    console.log("Other: ", other);
+
   return(
     <div className="flex flex-col basis-3/4 border-y-2 border-l-2 border-slate-200 font-['Montserrat']">
 
@@ -83,22 +91,47 @@ const Chat = ({user, selectedChatroom}) => {
         <div className="bg-white h-16 border-b-2 border-slate-200 flex flex-row flex-initial items-center justify-between">
         
             {/* Left Side of Header (Photo + Name) */}
-            <div className="flex flex-row">
-                <div className="p-2 my-auto">
-                    <Image 
-                    className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
-                    src={`${basePath}/question.png`}
-                    alt='flag'
-                    width={100}
-                    height={100}
-                    />
+            <div className="flex flex-row p-2">
+                <div className="relative flex flex-row items-center w-10 h-10 my-auto object-cover overflow-hidden rounded-full">
+                    {
+                        other ?
+                        (<>
+                            {
+                            other.avatarUrl ?
+                            <Image 
+                            src= {other.avatarUrl}
+                            alt='Avatar'
+                            width={200}
+                            height={200}
+                            />
+                            :
+                            <Image 
+                            className='full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                            src= "/question.png"
+                            alt='flag'
+                            width={100}
+                            height={100}
+                            />
+                            }
+                        </>)
+                        :
+                            <Image 
+                            className='full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                            src= "/question.png"
+                            alt='flag'
+                            width={100}
+                            height={100}
+                            />
+                    }
                 </div>
                 <div className="p-2 flex-col">
                     <div className="font-bold">
-                        Name
+                        {
+                            other ? <p>{other.firstName} {other.lastName}</p> : <p>???</p>
+                        }
                     </div>
                     <div className="text-slate-400">
-                        Last online 5 mins ago
+                            Last online 5 mins ago
                     </div>
                 </div>
             </div>
