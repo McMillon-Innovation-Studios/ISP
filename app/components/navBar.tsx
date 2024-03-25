@@ -47,6 +47,7 @@ const NavBar = ({activeTab}) => {
             console.log("Error");
         })
     }
+    
   return (
 
     /* logo */
@@ -95,7 +96,7 @@ const NavBar = ({activeTab}) => {
             {
                 user != null && (<>   
                 <div className="col-start-11 flex flex-row items-center">
-                    <div className="flex flex-row items-center w-12 h-12 object-cover overflow-hidden rounded-full">
+                    <div className="flex flex-row items-center w-12 h-12 object-cover overflow-hidden rounded-full border border-black">
                     {
                         user.avatarUrl ? 
                         
@@ -110,7 +111,7 @@ const NavBar = ({activeTab}) => {
                         :
                         
                         <Image 
-                        className='h-10 w-10 full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                        className='bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
                         src= "/question.png"
                         alt='flag'
                         width={100}

@@ -219,13 +219,13 @@ export default function Home() {
   }
 
   return (
-    <body>
+    <div>
       <NavBar 
       activeTab="Connect"/>
       <Hero />
 
       {/* Test Feature */}
-      <div className="h-[1500px] bg-green-600">
+      <div className="bg-green-600">
               {
                 loading ? <p>Loading...</p> :
                 users.map((user)=>(
@@ -243,14 +243,72 @@ export default function Home() {
               }
       </div>
 
-      
+      <div>
+      <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>
+      <div className=" grid grid-cols-5 content-center py-8 bg-white">
 
+        {/* Side Bar (Search) */}
+        <div className="text-center col-span-1">
+          <div className="w-[261px] h-[400px] p-10 flex-col justify-start items-center gap-5 inline-flex">
+            
+            {/* Search */}
+            <input className="w-[261px] h-[33px] bg-white p-3 rounded-[20px] border border-black border-opacity-50 justify-end items-center gap-1 inline-flex" type='text' placeholder={"Search " + filter} onChange={event => {setsearch(event.target.value)}}></input>
 
+            {/* Country Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Country')}}>Country</button>
+            </div>
 
+            {/* School Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 absolute bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('School')}}>School</button>
+            </div>
 
+            {/* Major Button */}
+            <div className="w-[261px] h-10 relative">
+              <div className="w-[261px] h-10 left-0 top-0 bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Major')}}>Major</button>
+              </div>
+            </div>
+          </div>
 
-
-
+        {/* Profile Grid */}
+        <div className="grid grid-cols-4 text-center col-span-4 gap-10 mx-7 mb-5">
+          {
+          users.filter((users) => {
+            if (search == '')
+            {
+              return Users
+            }
+            else if (filter == 'Country' && users.homeCountry.toLowerCase().includes(search.toLowerCase()))
+            {
+              return Users
+            }
+            else if (filter == 'School' && users.university.toLowerCase().includes(search.toLowerCase()))
+            {
+              return Users
+            }
+            else if (filter == 'Major' && users.major.toLowerCase().includes(search.toLowerCase()))
+            {
+              return Users
+            }
+          }        
+          ).map ((user) => (
+            user.id !== userData?.id &&
+            <div key={user.id}>
+            <ConnectProfileCards
+            otherUser={user}
+            userData={userData}
+            createChat={createChat}
+            sendMessageAndCreateChat={sendMessageAndCreateChat}
+            />
+            </div>
+        ))}
+      </div>
+    </div>
+  </div>
 
     <div>
       <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>
@@ -303,7 +361,8 @@ export default function Home() {
             return Users
           }
         }        
-        ).map (Users => (
+        )
+        .map (Users => (
             <ProfileCard
             getmodal = {getModalID}
             getmodalopen = {getModalOpen}
@@ -347,6 +406,6 @@ export default function Home() {
     </div>
   </div>
   
-  </body>
+  </div>
   )
 }

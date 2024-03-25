@@ -13,7 +13,7 @@ const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) 
 
         {/* Left Side */}
         <div className="flex flex-row">
-            <div className="relative ml-3 flex flex-row items-center w-12 h-12 my-auto object-cover overflow-hidden rounded-full">
+            <div className="relative ml-3 flex flex-row items-center w-12 h-12 my-auto object-cover overflow-hidden rounded-full border border-black">
                 {
                     avatarUrl ?
                     <Image 

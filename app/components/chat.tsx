@@ -78,8 +78,6 @@ const Chat = ({user, selectedChatroom}) => {
         }
     }
 
-    console.log("Other: ", other);
-
   return(
     <div className="flex flex-col basis-3/4 border-y-2 border-l-2 border-slate-200 font-['Montserrat']">
 
@@ -88,7 +86,7 @@ const Chat = ({user, selectedChatroom}) => {
         
             {/* Left Side of Header (Photo + Name) */}
             <div className="flex flex-row p-2">
-                <div className="relative flex flex-row items-center w-10 h-10 my-auto object-cover overflow-hidden rounded-full">
+                <div className="relative flex flex-row items-center w-10 h-10 my-auto object-cover overflow-hidden rounded-full border border-black">
                     {
                         other ?
                         (<>
@@ -162,5 +160,6 @@ const Chat = ({user, selectedChatroom}) => {
     </div>
   )
 }
+
   
 export default Chat

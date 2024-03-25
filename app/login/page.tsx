@@ -48,6 +48,8 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth,email,password);
             const user = userCredential.user;
 
+            console.log(user);
+
             console.log("Signed In:", userCredential);
             if(user){
                 router.push('/');

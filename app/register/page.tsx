@@ -12,7 +12,7 @@ import { doc, setDoc } from 'firebase/firestore'
 
 const Register = () => {
 
-    const[firstName, setFirstName] = useState('');
+    const[firstName, setFirstName] = useState<string>('');
     const[lastName, setLastName] = useState('');
     const[homeCountry, setHomeCountry] = useState('');
     const[countryFlag, setCountryFlag] = useState('');
@@ -20,6 +20,7 @@ const Register = () => {
     const[university, setUniversity] = useState('');
     const[major, setMajor] = useState('');
     const[bio, setBio] = useState('');
+    const[languages, setLanguages] = useState({});
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -80,6 +81,7 @@ const Register = () => {
                 major,
                 avatarUrl,
                 bio,
+                languages,
             })
             router.push('/');
             setErrors({});

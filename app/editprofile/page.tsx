@@ -25,6 +25,10 @@ const EditProfile = () => {
     const[bio, setBio] = useState('');
     const[avatarUrl,setAvatarUrl] = useState('');
     
+    // Languages
+    const [languageSet,setLanguageSet] = useState([]);
+
+    // Other
     const auth = getAuth(app);
     const storage = getStorage(app);
     const router = useRouter();
@@ -35,6 +39,23 @@ const EditProfile = () => {
 
     function capitalizeFirstLetter(string:string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    // Languages Feature
+    const handleAdd=()=>{
+        const temp=[...languageSet,'']
+        setLanguageSet(temp)
+    }
+    const handleChange=(onChangeValue,i)=>{
+        const inputData=[...languageSet];
+        inputData[i]=onChangeValue.target.value;
+        setLanguageSet(inputData);
+    }
+    const handleDelete=(i)=>{
+        console.log("i: ", i);
+        const deleteLanguage=[...languageSet];
+        deleteLanguage.splice(i,1);
+        setLanguageSet(deleteLanguage);
     }
     
     // Get User Info
@@ -69,6 +90,19 @@ const EditProfile = () => {
         major ? update.major = major : update.major = user.major;
         bio ? update.bio = bio : update.bio = user.bio;
         imagePreview ? update.avatarUrl = imagePreview : update.avatarUrl = user.avatarUrl;
+        if(languageSet){
+            for(let i = 0; i < languageSet.length; i++){
+                if(languageSet[i] == ""){
+                    languageSet.splice(i, 1);
+                }
+            }
+            console.log("Update Language Set: ", languageSet);
+            update.languages = languageSet;
+        }
+        else
+        {
+            update.languages = user.languages;
+        }
         return update;
       }
 
@@ -91,6 +125,7 @@ const EditProfile = () => {
                     university: updateData.university,
                     major: updateData.major,
                     bio: updateData.bio,
+                    languages: updateData.languages,
                 })
                 console.log("Profile Updated Successfully");
                 router.push("/"); //<--- I want to refresh page to reload content but router.refresh() does not work
@@ -173,7 +208,13 @@ const EditProfile = () => {
                         <span>Home Country</span>
                     </label>
                     <select onChange={(e)=>setHomeCountry(e.target.value)}>
-                        <option disabled selected> Select Country </option>
+                        <option disabled selected> 
+                        {
+                            user.homeCountry ?
+                            user.homeCountry :
+                            "Select Country"
+                        } 
+                        </option>
                         <option value="Argentina">Argentina</option>
                         <option value="Belgium">Belgium</option>
                         <option value="Brazil">Brazil</option>
@@ -233,7 +274,7 @@ const EditProfile = () => {
                         <span>Avatar</span>
                     </label> 
                     {/* Display Current Avatar */}
-                    {!imagePreview && <Image src={user.avatarUrl} alt='Current Avatar' width={60} height={60}/>}
+                    {!imagePreview && <Image src={user.avatarUrl ? user.avatarUrl : "/question.png"} alt='Current Avatar' width={60} height={60}/>}
 
                     {/* Display Uploaded Avatar */}
                     {imagePreview && <Image src={imagePreview} alt='New Avatar' width={60} height={60}/>}
@@ -241,7 +282,29 @@ const EditProfile = () => {
                     {/* <button className="border border-black" onClick={()=>{handleUpload()}}>Update</button> */}
                 </div>
 
-                <button type="submit">
+                {/* Languages */}
+                <form className="m-5">
+                <button type="button" className="border border-black" onClick={()=>handleAdd()}>Add Language</button>
+                {
+                languageSet.map((data,i)=>{
+                    return(
+                        <div>
+                            <select value={data} onChange={e=>handleChange(e,i)}>
+                                <option value=""> Select Language </option>
+                                <option value="Cantonese">Cantonese</option>
+                                <option value="English">English</option>
+                                <option value="Mandarin">Mandarin</option>
+                                <option value="Spanish">Spanish</option>
+
+                            </select>
+                            <button type="button" onClick={()=>handleDelete(i)}>x</button>
+                        </div>
+                    )
+                })
+                }
+                </form>
+
+                <button type="submit" className="border border-black">
                     {
                         loading ? <span className="loading loading-spinner loading-sm"></span> : "Save & Update"
                     }
