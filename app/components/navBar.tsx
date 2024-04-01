@@ -63,18 +63,21 @@ const NavBar = ({activeTab}) => {
             </div>
         </div>
 
+        {/*Connect*/}
         <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  ${activeTab == 'Connect' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
             <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab === 'Connect' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
             <Link href='/'>Connect</Link> 
             </div>
         </div>
 
+        {/*Career*/}
         <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
             <Link href='/'>Career</Link> 
             </div>
         </div>
 
+        {/*Support*/}
         <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
             <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
             <Link href='/'>Support</Link> 
