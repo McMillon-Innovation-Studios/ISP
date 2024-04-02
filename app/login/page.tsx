@@ -68,11 +68,11 @@ const Login = () => {
         <div>
             <NavBar
             activeTab=""/>
-            <div className=''>
+            <div className='text-center'>
 
                 {/* Log In */}                
                 <span>Log In</span>
-                <form onSubmit={handleSubmit}  className="w-[200px] flex flex-col gap-5">
+                <form onSubmit={handleSubmit}  className=" flex flex-col gap-5">
 
 
                 {/* Email */}
