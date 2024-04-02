@@ -68,41 +68,43 @@ const Login = () => {
         <div>
             <NavBar
             activeTab=""/>
-            <div className='text-center'>
+            <div className="mt-10 text-center font-['Lucida Sans']">
 
                 {/* Log In */}                
-                <span>Log In</span>
-                <form onSubmit={handleSubmit}  className=" flex flex-col gap-5">
+                <div className="text-3xl">Log In</div>
+                <form onSubmit={handleSubmit}  className=" flex flex-col gap-8">
 
 
                 {/* Email */}
                 <div>
                 <label>
-                    <span>Email</span>
+                    {/*<span>Email</span>*/}
                 </label>
-                    <div className="relative text-center text-blue-1000 text-[18px] font-['Stylus']">
-                    <input type="email" placeholder=" Enter Email" className="w-58 h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                    {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>} 
+                    <div className="mt-7 text-blue-600 text-[15px] font-['Lucida Sans']">
+                    <input type="email" placeholder=" Enter email" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                    {errors.email && <div><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
                 </div>
 
                 {/* Password */}
                 <div>
                 <label>
-                    <span>Password</span>
+                    {/*<span>Password</span>*/}
                 </label>
-                <div className="relative text-center text-blue-1000 text-[18px] font-['Stylus']">
-                <input type="password" placeholder=" Enter Password" className="w-58 h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
+                <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
+                <input type="password" placeholder=" Enter password" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                {errors.password && <div><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
 
                 {/* Log In Button */}
-                <button type="submit">
+                <div className="mt-8 text-white text-[17px] font-['Lucida Sans']">
+                    <button type="submit" className="w-[300px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
                     {
-                        loading ? "Loading..." :  "Login"
+                        loading ? "Loading..." :  "Log In"
                     }
-                </button>
+                    </button>
+                </div>
 
                 <span>Don't have an Account?{' '}
                     <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
