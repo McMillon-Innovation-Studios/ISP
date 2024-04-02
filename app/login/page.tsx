@@ -68,10 +68,10 @@ const Login = () => {
         <div>
             <NavBar
             activeTab=""/>
-            <div className="mt-10 text-center font-['Lucida Sans']">
+            <div className="text-center font-['Lucida Sans']">
 
                 {/* Log In */}                
-                <div className="text-3xl">Log In</div>
+                <div className="mt-10 text-3xl">Log In</div>
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-8">
 
 
@@ -109,7 +109,7 @@ const Login = () => {
                 </div>
 
                 {/* Log In Button */}
-                <div className="mt-8 text-white text-[17px] font-['Lucida Sans']">
+                <div className="text-white text-[17px] font-['Lucida Sans']">
                     <button type="submit" className="w-[300px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
                     {
                         loading ? "Loading..." :  "Log In"
