@@ -97,6 +97,17 @@ const Login = () => {
                     </div>
                 </div>
 
+                {/* Remember Me and Forgot Password */}
+                <div className="flex items-center justify-between ">
+                    <div className="flex items-center">
+                        <input type="checkbox" className="ml-2 text-center border-blue-600 text-blue-300 rounded"/>
+                        <label htmlFor="" className="ml-2 text-sm ">Remember me</label>
+                    </div>
+                    <div>
+                        <a href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</a>    
+                    </div>   
+                </div>
+
                 {/* Log In Button */}
                 <div className="mt-8 text-white text-[17px] font-['Lucida Sans']">
                     <button type="submit" className="w-[300px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
