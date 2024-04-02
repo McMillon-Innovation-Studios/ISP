@@ -81,19 +81,19 @@ const Login = () => {
                     {/*<span>Email</span>*/}
                 </label>
                     <div className="mt-7 text-blue-600 text-[15px] font-['Lucida Sans']">
-                    <input type="email" placeholder=" Enter email" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                    {errors.email && <div><span className='text-sm text-red-500'>{errors.email}</span></div>} 
+                        <input type="email" placeholder=" Enter email" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                        {errors.email && <div><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
                 </div>
 
                 {/* Password */}
                 <div>
-                <label>
-                    {/*<span>Password</span>*/}
-                </label>
-                <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
-                <input type="password" placeholder=" Enter password" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                {errors.password && <div><span className='text-sm text-red-500'>{errors.password}</span></div>}
+                    <label>
+                        {/*<span>Password</span>*/}
+                    </label>
+                    <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
+                        <input type="password" placeholder=" Enter password" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                        {errors.password && <div><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
 
@@ -106,9 +106,9 @@ const Login = () => {
                     </button>
                 </div>
 
-                <span>Don't have an Account?{' '}
+                <span>New to Hello World?{' '}
                     <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Register
+                        Register now
                     </Link>
 
                 </span>
