@@ -81,7 +81,7 @@ const Login = () => {
                     {/*<span>Email</span>*/}
                 </label>
                     <div className="mt-7 text-blue-600 text-[15px] font-['Lucida Sans']">
-                        <input type="email" placeholder=" Enter email" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Enter email" className="w-[300px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                         {errors.email && <div><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
                 </div>
@@ -92,16 +92,16 @@ const Login = () => {
                         {/*<span>Password</span>*/}
                     </label>
                     <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder=" Enter password" className="w-[300px] h-[50px] leading-[50px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                        <input type="password" placeholder="Enter password" className="w-[300px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                         {errors.password && <div><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
 
                 {/* Remember Me and Forgot Password */}
-                <div className="flex items-center justify-between ">
+                <div className="flex items-center justify-between pl-[0px]">
                     <div className="flex items-center">
                         <input type="checkbox" className="ml-2 text-center border-blue-600 text-blue-300 rounded"/>
-                        <label htmlFor="" className="ml-2 text-sm ">Remember me</label>
+                        <label htmlFor="" className="ml-2 text-sm">Remember me</label>
                     </div>
                     <div>
                         <a href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</a>    
