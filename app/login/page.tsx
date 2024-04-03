@@ -65,7 +65,7 @@ const Login = () => {
 
     
     return (
-        <div>
+        <div  className="bg-white">
             <NavBar
             activeTab=""/>
             <div className="text-center font-['Lucida Sans']">
