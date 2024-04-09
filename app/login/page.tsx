@@ -65,10 +65,10 @@ const Login = () => {
 
     
     return (
-        <div  className="bg-white">
+        <div className="bg-white">
             <NavBar
             activeTab=""/>
-            <div className="text-center font-['Lucida Sans']">
+            <div className="max-w-md w-full mx-auto mt-10 bg-white p-8  text-center font-['Lucida Sans']">
 
                 {/* Log In */}                
                 <div className="mt-10 text-3xl">Log In</div>
