@@ -68,7 +68,7 @@ const Login = () => {
         <div className="bg-white">
             <NavBar
             activeTab=""/>
-            <div className="max-w-md w-full mx-auto mt-10 bg-white p-8  text-center font-['Lucida Sans']">
+            <div className="max-w-[400px] w-full mx-auto mt-10 bg-white p-6 text-center font-['Lucida Sans']">
 
                 {/* Log In */}                
                 <div className="mt-10 text-4xl">Log In</div>
@@ -81,7 +81,7 @@ const Login = () => {
                     {/*<span>Email</span>*/}
                 </label>
                     <div className="mt-7 text-blue-600 text-[15px] font-['Lucida Sans']">
-                        <input type="email" placeholder="Enter email" className="w-[300px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                         {errors.email && <div className="mt-1 flex flex-col gap-1"><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
                 </div>
@@ -92,7 +92,7 @@ const Login = () => {
                         {/*<span>Password</span>*/}
                     </label>
                     <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder="Enter password" className="w-[300px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                         {errors.password && <div className="mt-1"><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
@@ -109,8 +109,8 @@ const Login = () => {
                 </div>
 
                 {/* Log In Button */}
-                <div className="text-white text-[17px] font-['Lucida Sans']">
-                    <button type="submit" className="w-[300px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
+                <div className="text-white text-[19px] font-['Lucida Sans']">
+                    <button type="submit" className="w-[350px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
                     {
                         loading ? "Loading..." :  "Log In"
                     }
