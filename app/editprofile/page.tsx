@@ -179,132 +179,152 @@ const EditProfile = () => {
     }
 
     return(
-        <div>
+        <div className="bg-white">
             <NavBar
             activeTab=""/>
-            <div className="flex flex-col gap-5">
-                <h1>Edit Profile</h1>
+            <div className="flex flex-col gap-5 items-center w-[1000px] mx-auto mt-[100px] rounded-lg  border-2 border-black shadow-lg">
                 
-                <form onSubmit={updateForm}>
-                {/* Change First Name */}
-                <div>
-                    <label>
-                        <span>First Name</span>
-                    </label>
-                    <input type="text" placeholder={user.firstName} value={firstName} onChange ={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}></input>
-                </div>
+                
 
-                {/* Change Last Name */}
-                <div>
-                    <label>
-                        <span>Last Name</span>
-                    </label>
-                    <input type="text" placeholder={user.lastName} value={lastName} onChange ={(e)=>setLastName(e.target.value)}></input>
-                </div>
+                <form onSubmit={updateForm} className="flex flex-col items-center">
+                <h1 className="font-bold text-3xl p-3">Edit Profile</h1>
 
-                {/* Change Home Country */}
-                <div>
-                    <label>
-                        <span>Home Country</span>
-                    </label>
-                    <select onChange={(e)=>setHomeCountry(e.target.value)}>
-                        <option disabled selected> 
-                        {
-                            user.homeCountry ?
-                            user.homeCountry :
-                            "Select Country"
-                        } 
-                        </option>
-                        <option value="Argentina">Argentina</option>
-                        <option value="Belgium">Belgium</option>
-                        <option value="Brazil">Brazil</option>
-                        <option value="China">China</option>
-                    </select>
-                </div>
+                    {/* CONTENT INFORMATION */}
+                    <div className="flex flex-row w-[1000px] text-blue-600">
 
-                {/* Country Flag */}
-                <div>
-                    <label>
-                        <span>Country Flag</span>
-                    </label>
-                    <Image
-                    alt={homeCountry}
-                    src={user.countryFlag ? user.countryFlag : "/UnknownFlag.png"}
-                    width={100}
-                    height={100}
-                    />
-                </div>
+                        {/* LEFT SIDE */}
+                        <div className="flex flex-col basis-1/2 px-10 gap-y-6">
+
+                            {/* Change First Name */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>First Name</span>
+                                </label>
+                                <input className="rounded-[99px] pl-3 w-[250px] border border-blue-600" type="text" placeholder={user.firstName} value={firstName} onChange ={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}></input>
+                            </div>
+
+                            {/* Change Last Name */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>Last Name</span>
+                                </label>
+                                <input className="pl-3 w-[250px] border border-blue-600 rounded-[99px]" type="text" placeholder={user.lastName} value={lastName} onChange ={(e)=>setLastName(e.target.value)}></input>
+                            </div>
+
+                            {/* Change Home Country */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>Home Country</span>
+                                </label>
+                                <select className="pl-3 w-[250px] border border-blue-600 rounded-[99px]" onChange={(e)=>setHomeCountry(e.target.value)}>
+                                    <option disabled selected> 
+                                    {
+                                        user.homeCountry ?
+                                        user.homeCountry :
+                                        "Select Country"
+                                    } 
+                                    </option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="China">China</option>
+                                </select>
+                            </div>
+
+                            {/* Country Flag */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>Country Flag</span>
+                                </label>
+                                <Image
+                                alt={homeCountry}
+                                src={user.countryFlag ? user.countryFlag : "/UnknownFlag.png"}
+                                width={100}
+                                height={100}
+                                />
+                            </div>
 
 
-                {/* Change Home City */}
-                <div>
-                    <label>
-                        <span>Home City</span>
-                    </label>
-                    <input type="text" placeholder={user.homeCity ? user.homeCity : "Change Home City"} value={homeCity} onChange ={(e)=>setHomeCity(e.target.value)}></input>
-                </div>
+                            {/* Change Home City */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>Home City</span>
+                                </label>
+                                <input className="pl-3 w-[250px] border border-blue-600 rounded-[99px]" type="text" placeholder={user.homeCity ? user.homeCity : "Change Home City"} value={homeCity} onChange ={(e)=>setHomeCity(e.target.value)}></input>
+                            </div>
 
-                {/* Change University */}
-                <div>
-                    <label>
-                        <span>University</span>
-                    </label>
-                    <input type="text" placeholder={user.university ? user.university : "Change University"} value={university} onChange ={(e)=>setUniversity(e.target.value)}></input>
-                </div>
+                            {/* Change University */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>University</span>
+                                </label>
+                                <input className="pl-3 w-[250px] border border-blue-600 rounded-[99px]" type="text" placeholder={user.university ? user.university : "Change University"} value={university} onChange ={(e)=>setUniversity(e.target.value)}></input>
+                            </div>
 
-                {/* Change Major */}
-                <div>
-                    <label>
-                        <span>Major</span>
-                    </label>
-                    <input type="text" placeholder={user.major ? user.major : "Change Major"} value={major} onChange ={(e)=>setMajor(e.target.value)}></input>
-                </div>
+                            {/* Change Major */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    <span>Major</span>
+                                </label>
+                                <input className="pl-3 w-[250px] border border-blue-600 rounded-[99px]" type="text" placeholder={user.major ? user.major : "Change Major"} value={major} onChange ={(e)=>setMajor(e.target.value)}></input>
+                            </div>
 
-                {/* Change Biography */}
-                <div>
-                    <label>
-                        <span>Biography</span>
-                    </label>
-                    <input type="text" placeholder={user.bio ? user.bio : "Change Bio"} value={bio} onChange ={(e)=>setBio(e.target.value)}></input>
-                </div>
-
-                {/* Change Avatar */}
-                <div>
-                    <label>
-                        <span>Avatar</span>
-                    </label> 
-                    {/* Display Current Avatar */}
-                    {!imagePreview && <Image src={user.avatarUrl ? user.avatarUrl : "/question.png"} alt='Current Avatar' width={60} height={60}/>}
-
-                    {/* Display Uploaded Avatar */}
-                    {imagePreview && <Image src={imagePreview} alt='New Avatar' width={60} height={60}/>}
-                    <input type="file" onChange={handleUpload}/>
-                    {/* <button className="border border-black" onClick={()=>{handleUpload()}}>Update</button> */}
-                </div>
-
-                {/* Languages */}
-                <form className="m-5">
-                <button type="button" className="border border-black" onClick={()=>handleAdd()}>Add Language</button>
-                {
-                languageSet.map((data,i)=>{
-                    return(
-                        <div>
-                            <select value={data} onChange={e=>handleChange(e,i)}>
-                                <option value=""> Select Language </option>
-                                <option value="Cantonese">Cantonese</option>
-                                <option value="English">English</option>
-                                <option value="Mandarin">Mandarin</option>
-                                <option value="Spanish">Spanish</option>
-
-                            </select>
-                            <button type="button" onClick={()=>handleDelete(i)}>x</button>
                         </div>
-                    )
-                })
-                }
-                </form>
 
-                <button type="submit" className="border border-black">
+                    {/* RIGHT SIDE */}
+                    <div className="basis-1/2 flex flex-col gap-6 px-10">
+
+                        {/* Change Avatar */}
+                        <div className="mx-4">
+                            <label className="font-bold">
+                                <span>Avatar</span>
+                            </label> 
+                            {/* Display Current Avatar */}
+                            {!imagePreview && <Image src={user.avatarUrl ? user.avatarUrl : "/question.png"} alt='Current Avatar' width={60} height={60}/>}
+
+                            {/* Display Uploaded Avatar */}
+                            {imagePreview && <Image src={imagePreview} alt='New Avatar' width={60} height={60}/>}
+                            <input type="file" onChange={handleUpload}/>
+                            {/* <button className="border border-black" onClick={()=>{handleUpload()}}>Update</button> */}
+                        </div>
+
+                        {/* Change Biography */}
+                        <div className="flex flex-col mx-4">
+                            <label className="font-bold">
+                                <span>Biography</span>
+                            </label>
+                            <textarea className="resize-none overflow-hidden h-[175px] rounded-lg border border-blue-600 p-2 text-black" placeholder={user.bio ? user.bio : "Change Bio"} value={bio} onChange ={(e)=>setBio(e.target.value)}></textarea>
+                        </div>
+
+                        
+
+                        {/* Languages */}
+                        <form className="">
+                        <button type="button" className="border border-blue-600 rounded-[99px] px-2 py-1" onClick={()=>handleAdd()}>+Add Language</button>
+                        {
+                        languageSet.map((data,i)=>{
+                            return(
+                                <div>
+                                    <select value={data} onChange={e=>handleChange(e,i)}>
+                                        <option value=""> Select Language </option>
+                                        <option value="Cantonese">Cantonese</option>
+                                        <option value="English">English</option>
+                                        <option value="Mandarin">Mandarin</option>
+                                        <option value="Spanish">Spanish</option>
+
+                                    </select>
+                                    <button type="button" onClick={()=>handleDelete(i)}>x</button>
+                                </div>
+                            )
+                        })
+                        }
+                    
+
+                        </form>
+                    </div>
+                </div>
+                        
+                <button type="submit" className="border border-black rounded-md text-white bg-blue-600 text-lg p-2 m-3">
                     {
                         loading ? <span className="loading loading-spinner loading-sm"></span> : "Save & Update"
                     }

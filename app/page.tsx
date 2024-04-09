@@ -224,25 +224,6 @@ export default function Home() {
       activeTab="Connect"/>
       <Hero />
 
-      {/* Test Feature */}
-      <div className="bg-green-600">
-              {
-                loading ? <p>Loading...</p> :
-                users.map((user)=>(
-                  user.id !== userData?.id &&
-                  <div key={user.id}>
-                  <ConnectProfileCards
-                  otherUser={user}
-                  userData={userData}
-                  createChat={createChat}
-                  sendMessageAndCreateChat={sendMessageAndCreateChat}
-                  />
-                  </div>
-                  ))
-                
-              }
-      </div>
-
       <div>
       <div className="pt-10 bg-white text-center text-[25px] font-semibold font-['Montserrat']">Find Your Mentor!</div>
       <div className=" grid grid-cols-5 content-center py-8 bg-white">
