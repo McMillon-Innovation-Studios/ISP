@@ -77,10 +77,7 @@ const Login = () => {
 
                 {/* Email */}
                 <div>
-                <label>
-                    {/*<span>Email</span>*/}
-                </label>
-                    <div className="mt-7 text-blue-600 text-[15px] font-['Lucida Sans']">
+                    <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
                         <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                         {errors.email && <div className="mt-1 flex flex-col gap-1"><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
@@ -88,11 +85,8 @@ const Login = () => {
 
                 {/* Password */}
                 <div>
-                    <label>
-                        {/*<span>Password</span>*/}
-                    </label>
-                    <div className="text-blue-600 text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                    <div className="text-black text-[15px] font-['Lucida Sans']">
+                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 pr-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                         {errors.password && <div className="mt-1"><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
@@ -104,7 +98,7 @@ const Login = () => {
                         <label htmlFor="" className="ml-2 text-sm">Remember me</label>
                     </div>
                     <div>
-                        <a href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</a>    
+                        <Link href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</Link>    
                     </div>   
                 </div>
 
