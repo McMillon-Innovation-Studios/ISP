@@ -78,7 +78,7 @@ const Login = () => {
                 {/* Email */}
                 <div>
                     <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
-                        <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                         {errors.email && <div className="mt-1 flex flex-col gap-1"><span className='text-sm text-red-500'>{errors.email}</span></div>} 
                     </div>
                 </div>
@@ -86,7 +86,7 @@ const Login = () => {
                 {/* Password */}
                 <div>
                     <div className="text-black text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 pr-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 pr-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                         {errors.password && <div className="mt-1"><span className='text-sm text-red-500'>{errors.password}</span></div>}
                     </div>
                 </div>
