@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image';
@@ -51,7 +52,7 @@ const NavBar = ({activeTab}) => {
   return (
 
     /* logo */
-    <nav className="w-full h-[77px] bg-white justify-around place-items-center grid grid-cols-12">
+    <nav className={`w-full h-[77px] justify-around place-items-center grid grid-cols-12 ${activeTab === 'Landing' ? 'bg-inherit' : 'bg-white'}`}>
         
         {/*Blue Logo */}
         <div className="w-[38px] h-[38px] bg-blue-600 rounded-[20px]"/>
@@ -59,12 +60,12 @@ const NavBar = ({activeTab}) => {
         {/*Button with Text */}
         <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  ${activeTab == 'About' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
             <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab === 'About' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
-            <Link href='/'>About</Link> 
+            <Link href='/landing'>About</Link> 
             </div>
         </div>
 
-        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  ${activeTab == 'Connect' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
-            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab === 'Connect' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border  ${activeTab == 'Landing' ? "bg-inherit border-white" : "border-blue-600"} ${activeTab == 'Connect' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab == 'Landing' ? "text-white" : ""} ${activeTab === 'Connect' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
             <Link href='/'>Connect</Link> 
             </div>
         </div>
