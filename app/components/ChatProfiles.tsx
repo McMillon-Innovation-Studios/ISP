@@ -13,7 +13,7 @@ const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) 
 
         {/* Left Side */}
         <div className="flex flex-row">
-            <div className="relative ml-3 flex flex-row items-center w-12 h-12 my-auto object-cover overflow-hidden rounded-full border border-black">
+            <div className="overflow-hidden bg-sky-50 border border-black flex flex-row items-center my-auto rounded-full ml-3">
                 {
                     avatarUrl ?
                     <Image 
@@ -21,6 +21,7 @@ const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) 
                     alt='avatar'
                     width={100}
                     height={100}
+                    className="mx-auto w-10 h-10 object-cover "
                     />
                     :
                     <Image 

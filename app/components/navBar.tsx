@@ -98,13 +98,13 @@ const NavBar = ({activeTab}) => {
 
             {
                 user != null && (<>   
-                <div className="col-start-11 flex flex-row items-center">
-                    <div className="flex flex-row items-center w-12 h-12 object-cover overflow-hidden rounded-full border border-black">
+                <div className="col-span-2 flex flex-row items-center">
+                    <div className="overflow-hidden bg-sky-50 border border-black flex flex-row items-center my-auto rounded-full">
                     {
                         user.avatarUrl ? 
                         
                         <Image
-                        className="object-fill mx-auto"
+                        className="mx-auto w-12 h-12 object-cover"
                         src={user.avatarUrl}
                         alt="Avatar"
                         width={100}
@@ -114,7 +114,7 @@ const NavBar = ({activeTab}) => {
                         :
                         
                         <Image 
-                        className='bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
+                        className='w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full drop-shadow-lg'
                         src= "/question.png"
                         alt='flag'
                         width={100}
