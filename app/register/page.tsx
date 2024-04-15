@@ -105,8 +105,9 @@ const Register = () => {
             activeTab=""/>
             <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
                 <div className="border border-white p-5">
-                {/* Log In */}                
-                <div className="text-4xl">Log In</div>
+                {/* Create an account (header) */}                
+                <div className="text-4xl">Create an account</div>
+                <div className="mt-1 text-sm">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
 
