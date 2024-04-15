@@ -1,3 +1,6 @@
+//Will be deleted (eventually). Used as a middle page to move things around the registering pages
+//Real register
+
 'use client'
 import React from 'react'
 import NavBar from '../components/navBar'
@@ -97,63 +100,75 @@ const Register = () => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-
-    
     return (
-        <div className="bg-white">
+        <div>
             <NavBar
             activeTab=""/>
-            <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
-                <div className="border border-white p-5">
-                {/* Log In */}                
-                <div className="text-4xl">Log In</div>
-                <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
+            <div className=''>
+                
+                <span>Register</span>
+                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
 
+                {/* First Name */}
+                <div>
+                    <label>
+                        <span>First Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter First Name" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.firstName && <span className='text-sm text-red-600'>{errors.firstName}</span>}
+                </div>
+
+                {/* Last Name */}
+                <div>
+                    <label>
+                        <span>Last Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter Last Name" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.lastName && <span className='text-sm text-red-600'>{errors.lastName}</span>}
+                </div>
 
                 {/* Email */}
                 <div>
-                    <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
-                        <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                        {errors.email && <div className="mt-1 flex flex-col gap-1"><span className='text-sm text-red-500'>{errors.email}</span></div>} 
-                    </div>
+                <label>
+                    <span>Email</span>
+                </label>
+                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
                 </div>
 
                 {/* Password */}
                 <div>
-                    <div className="text-black text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 pr-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                        {errors.password && <div className="mt-1"><span className='text-sm text-red-500'>{errors.password}</span></div>}
-                    </div>
+                <label>
+                    <span>Password</span>
+                </label>
+                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
                 </div>
 
-                {/* Remember Me and Forgot Password */}
-                <div className="flex items-center justify-between pl-[0px]">
-                    <div className="flex items-center">
-                        <input type="checkbox" className="ml-2 text-center border-blue-600 text-blue-300 rounded"/>
-                        <label htmlFor="" className="ml-2 text-sm">Remember me</label>
-                    </div>
-                    <div>
-                        <Link href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</Link>    
-                    </div>   
+                {/* Confirm Password */}
+                <div>
+                <label>
+                    <span>Confirm Password</span>
+                </label>
+                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
+                {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
                 </div>
+                
 
-                {/* Log In Button */}
-                <div className="text-white text-[19px] font-['Lucida Sans']">
-                    <button type="submit" className="w-[350px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
+                {/* Sign Up Button */}
+                <button type="submit">
                     {
-                        loading ? "Loading..." :  "Log In"
+                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
                     }
                     </button>
-                </div>
 
-                <span>New to Hello World?{' '}
-                    <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Register now
+                <span>Already have an Account?{' '}
+                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
+                        Login
                     </Link>
 
                 </span>
                 </form>
-                </div>
             </div>            
         </div>
     )
