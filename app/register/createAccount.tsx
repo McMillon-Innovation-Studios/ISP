@@ -10,7 +10,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore'
 
 
-const Register = () => {
+const () = () => {      // const page, (Backend) 
 
     const[firstName, setFirstName] = useState<string>('');
     const[lastName, setLastName] = useState('');
@@ -104,54 +104,37 @@ const Register = () => {
             <NavBar
             activeTab=""/>
             <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
-                <div className="border border-white p-5">
-                {/* Log In */}                
-                <div className="text-4xl">Log In</div>
+                <div className="border border-white px-5">
+
+                {/* Create an account (header) */}                
+                <div className="mb-3 text-5xl">Create an account</div>
+                
+                {/* Hello World Description */}
+                <div className="mt-5 text-md leading-6">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
+                
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
-
-                {/* Email */}
-                <div>
-                    <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
-                        <input type="email" placeholder="Enter email" className="w-[350px] h-[50px] leading-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                        {errors.email && <div className="mt-1 flex flex-col gap-1"><span className='text-sm text-red-500'>{errors.email}</span></div>} 
-                    </div>
-                </div>
-
-                {/* Password */}
-                <div>
-                    <div className="text-black text-[15px] font-['Lucida Sans']">
-                        <input type="password" placeholder="Enter password" className="w-[350px] h-[50px] leading-[50px] pl-4 pr-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none"  value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                        {errors.password && <div className="mt-1"><span className='text-sm text-red-500'>{errors.password}</span></div>}
-                    </div>
-                </div>
-
-                {/* Remember Me and Forgot Password */}
-                <div className="flex items-center justify-between pl-[0px]">
-                    <div className="flex items-center">
-                        <input type="checkbox" className="ml-2 text-center border-blue-600 text-blue-300 rounded"/>
-                        <label htmlFor="" className="ml-2 text-sm">Remember me</label>
-                    </div>
-                    <div>
-                        <Link href="" className="font-medium text-sm text-blue-600 hover:text-blue-800 hover:underline">Forgot password?</Link>    
-                    </div>   
-                </div>
-
-                {/* Log In Button */}
-                <div className="text-white text-[19px] font-['Lucida Sans']">
-                    <button type="submit" className="w-[350px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
+                {/* I am a Mentor/Student Buttons */}
+                <div className="mt-8 text-[19px] flex flex-col-2 justify-between font-['Lucida Sans']">
+                    <button type="/register" className="w-[300px] h-[65px] text-white font-bold bg-blue-600 rounded-[99px] border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
                     {
-                        loading ? "Loading..." :  "Log In"
+                        loading ? "Loading..." :  "I am a Mentor"
+                    }
+                    </button>
+                    <button type="/register" className="w-[300px] h-[65px] text-blue-600 font-bold bg-white rounded-[99px] border-2 border-blue-600 hover:bg-blue-100 transition ease-out duration-400">
+                    {
+                        loading ? "Loading..." :  "I am a Student"
                     }
                     </button>
                 </div>
 
-                <span>New to Hello World?{' '}
-                    <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Register now
+                {/* Go to Log In */}
+                <span className="mt-4">Already have an account?{' '}
+                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
+                        Log In
                     </Link>
-
                 </span>
+
                 </form>
                 </div>
             </div>            
@@ -159,4 +142,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default // where to export (backend)

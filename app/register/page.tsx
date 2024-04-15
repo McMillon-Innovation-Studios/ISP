@@ -97,45 +97,75 @@ const Register = () => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-
-    
     return (
-        <div className="bg-white">
+        <div>
             <NavBar
             activeTab=""/>
-            <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
-                <div className="border border-white px-5">
-
-                {/* Create an account (header) */}                
-                <div className="mb-3 text-5xl">Create an account</div>
+            <div className=''>
                 
-                {/* Hello World Description */}
-                <div className="mt-5 text-md leading-6">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
-                <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
+                <span>Register</span>
+                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
 
-                {/* I am a Mentor/Student Buttons */}
-                <div className="mt-8 text-[19px] flex flex-col-2 justify-between font-['Lucida Sans']">
-                    <button type="/register" className="w-[300px] h-[65px] text-white font-bold bg-blue-600 rounded-[99px] border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
-                    {
-                        loading ? "Loading..." :  "I am a Mentor"
-                    }
-                    </button>
-                    <button type="/register" className="w-[300px] h-[65px] text-blue-600 font-bold bg-white rounded-[99px] border-2 border-blue-600 hover:bg-blue-100 transition ease-out duration-400">
-                    {
-                        loading ? "Loading..." :  "I am a Student"
-                    }
-                    </button>
+                {/* First Name */}
+                <div>
+                    <label>
+                        <span>First Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter First Name" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.firstName && <span className='text-sm text-red-600'>{errors.firstName}</span>}
                 </div>
 
-                {/* Go to Log In */}
-                <span className="mt-4">Already have an account?{' '}
+                {/* Last Name */}
+                <div>
+                    <label>
+                        <span>Last Name</span>
+                    </label>
+                    <input type="text" placeholder="Enter Last Name" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.lastName && <span className='text-sm text-red-600'>{errors.lastName}</span>}
+                </div>
+
+                {/* Email */}
+                <div>
+                <label>
+                    <span>Email</span>
+                </label>
+                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
+                </div>
+
+                {/* Password */}
+                <div>
+                <label>
+                    <span>Password</span>
+                </label>
+                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
+                </div>
+
+                {/* Confirm Password */}
+                <div>
+                <label>
+                    <span>Confirm Password</span>
+                </label>
+                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
+                {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
+                </div>
+                
+
+                {/* Sign Up Button */}
+                <button type="submit">
+                    {
+                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
+                    }
+                    </button>
+
+                <span>Already have an Account?{' '}
                     <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Log In
+                        Login
                     </Link>
 
                 </span>
                 </form>
-                </div>
             </div>            
         </div>
     )
