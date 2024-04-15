@@ -107,17 +107,17 @@ const Register = () => {
                 <div className="border border-white p-5">
                 {/* Create an account (header) */}                
                 <div className="text-4xl">Create an account</div>
-                <div className="mt-1 text-sm">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
+                <div className="mt-2 text-sm leading-6">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
                 {/* I am a Mentor/Student Buttons */}
                 <div className="mt-4 text-[19px] flex flex-col-2 justify-between font-['Lucida Sans']">
-                    <button type="submit" className="w-[250px] h-[65px] leading-[50px] text-white font-bold bg-blue-600 rounded-[99px] border-4 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
+                    <button type="" className="w-[250px] h-[65px] text-white font-bold bg-blue-600 rounded-[99px] border-4 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
                     {
                         loading ? "Loading..." :  "I am a Mentor"
                     }
                     </button>
-                    <button type="submit" className="w-[250px] h-[65px] leading-[50px] text-blue-600 font-bold bg-white rounded-[99px] border-4 border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
+                    <button type="" className="w-[250px] h-[65px] text-blue-600 font-bold bg-white rounded-[99px] border-2 border-blue-600 hover:bg-blue-100 transition ease-out duration-400">
                     {
                         loading ? "Loading..." :  "I am a Student"
                     }
