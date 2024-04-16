@@ -115,7 +115,7 @@ const () = () => {      // const page, (Backend)
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
                 {/* I am a Mentor/Student Buttons */}
-                <div className="mt-8 text-[19px] flex flex-col-2 justify-between font-['Lucida Sans']">
+                <div className="mt-8 text-[20px] flex flex-col-2 justify-between font-['Lucida Sans']">
                     <button type="/register" className="w-[300px] h-[65px] text-white font-bold bg-blue-600 rounded-[99px] border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
                     {
                         loading ? "Loading..." :  "I am a Mentor"
