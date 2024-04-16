@@ -113,7 +113,7 @@ const Login = () => {
 
                 {/* Go to Sign Up  */}
                 <span>New to Hello World?{' '}
-                    <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
+                    <Link href="/createAccount" className="text-blue-600 hover:text-blue-800 hover:underline">
                         Register now
                     </Link>
 
