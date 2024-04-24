@@ -165,14 +165,20 @@ const NavBar = ({activeTab}) => {
              {/* Sign in and Register */}
             {
                 user == null && (<>
-                <div className="w-32 h-[38px] leading-[35px] bg-white rounded-[99px] border border-blue-600 col-start-11 hover:bg-blue-600 transition ease-out duration-400">
-                    <div className="relative text-center text-blue-600 text-[22px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
+                <div className={`w-32 h-[38px] leading-[35px] rounded-[99px] border
+                        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"}`}>
+                    <div className={`relative text-center text-blue-600 text-[22px] font-bold font-['Montserrat']
+                    ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}`}>
                     <Link href='/login'>Log In</Link> 
                     </div>
                 </div>
 
-                <div className="w-32 h-[38px] leading-[35px] bg-blue-600 rounded-[99px] border border-blue-600 col-start-12 hover:bg-white transition ease-out duration-400">
-                    <div className="relative text-center text-white text-[22px] font-bold font-['Montserrat'] hover:text-blue-600 transition ease-out duration-400">
+                <div className={`w-32 h-[38px] leading-[35px] rounded-[99px] border
+                ${activeTab == 'Landing' ? "bg-white border-white hover:bg-blue-600 transition ease-out duration-400" : "border-blue-600 bg-blue-600 hover:bg-white transition ease-out duration-400"}`}>
+                    
+                    <div className={`relative text-center text-[22px] font-bold font-['Montserrat']
+                    ${activeTab == 'Landing' ? "text-blue-600 hover:text-white" : "text-white hover:text-blue-600 transition ease-out duration-400"}`}>
+                    
                     <Link href='/register'>Sign Up</Link> 
                     </div>
                 </div>
