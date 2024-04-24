@@ -251,7 +251,13 @@ export default function Home() {
             <div className="w-[261px] h-10 relative">
               <div className="w-[261px] h-10 left-0 top-0 bg-sky-50 rounded-[20px] border-2 border-blue-600" />
                 <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']" onClick={event => {setfilter('Major')}}>Major</button>
+            </div>
+
+              <div className="w-[261px] h-10 relative">
+                <div className="w-[261px] h-10 left-0 top-0 bg-sky-50 rounded-[20px] border-2 border-blue-600" />
+                <button className="left-[97.32px] top-[11px] absolute text-center text-blue-600 text-[15px] font-semibold font-['Montserrat']">Language</button>
               </div>
+
             </div>
           </div>
 

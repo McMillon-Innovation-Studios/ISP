@@ -228,6 +228,13 @@ const EditProfile = () => {
                                     <option value="Belgium">Belgium</option>
                                     <option value="Brazil">Brazil</option>
                                     <option value="China">China</option>
+                                    <option value="India">India</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="South_Korea">South Korea</option>
                                 </select>
                             </div>
 

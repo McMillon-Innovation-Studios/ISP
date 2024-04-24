@@ -55,43 +55,71 @@ const NavBar = ({activeTab}) => {
     <nav className={`w-full h-[77px] justify-around place-items-center grid grid-cols-12 ${activeTab === 'Landing' ? 'bg-inherit' : 'bg-white'}`}>
         
         {/*Blue Logo */}
-        <div className="w-[38px] h-[38px] bg-blue-600 rounded-[20px]"/>
+        <Link href='/landing' className="h-14 w-14 bg-blue-600 rounded-[99px] grid place-items-center">
+            <Image
+            src="/HelloWorldLogo.png"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="h-12 w-12 bg-blue-600 rounded-[99px]"
+            />
+        </Link>
+
+        {/*<div className="w-[38px] h-[38px] bg-blue-600 rounded-[20px]"/>*/}
 
         {/*Button with Text */}
-        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  ${activeTab == 'About' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
-            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab === 'About' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
-            <Link href='/landing'>About</Link> 
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  
+        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']
+            ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}`}>
+            <Link href='/'>About</Link> 
             </div>
         </div>
 
-        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border  ${activeTab == 'Landing' ? "bg-inherit border-white" : "border-blue-600"} ${activeTab == 'Connect' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
-            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab == 'Landing' ? "text-white" : ""} ${activeTab === 'Connect' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600
+        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"} 
+        ${activeTab == 'Connect' ? 'bg-blue-600' : ''}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  
+            ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}
+            ${activeTab === 'Connect' ? 'text-white' : ''}`}>
             <Link href='/'>Connect</Link> 
             </div>
         </div>
 
         {/*Career*/}
-        <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
-            <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  
+        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']
+            ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}`}>
             <Link href='/'>Career</Link> 
             </div>
         </div>
 
         {/*Support*/}
-        <div className="w-28 h-[35px] leading-[34px] bg-white rounded-[99px] border border-blue-600 hover:bg-blue-600 transition ease-out duration-400">
-            <div className="relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat'] hover:text-white transition ease-out duration-400">
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  
+        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']
+            ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}`}>
             <Link href='/'>Support</Link> 
             </div>
         </div>
 
-        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600  ${activeTab == 'Message' ? 'bg-blue-600' : 'bg-white hover:bg-blue-600 transition ease-out duration-400'}`}>
-            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  ${activeTab === 'Message' ? 'text-white' : 'text-blue-600 hover:text-white transition ease-out duration-400'}`}>
+        <div className={`w-28 h-[35px] leading-[34px] rounded-[99px] border border-blue-600
+        ${activeTab == 'Landing' ? "bg-inherit border-white hover:bg-white transition ease-out duration-400" : "border-blue-600 hover:bg-blue-600 transition ease-out duration-400"} 
+        ${activeTab == 'Message' ? 'bg-blue-600' : ''}`}>
+            <div className={`relative text-center text-blue-600 text-[20px] font-bold font-['Montserrat']  
+            ${activeTab == 'Landing' ? "text-white hover:text-blue-600" : "hover:text-white transition ease-out duration-400"}
+            ${activeTab === 'Message' ? 'text-white' : ''}`}>
             <Link href='/testmessage'>Message</Link> 
             </div>
         </div>
 
         {/*Search Bar */}
-        <input className="px-3 w-[400px] h-[35px] leading-[34px] font-['Montserrat'] rounded-[99px] border border-slate-300 col-start-7 col-span-4" type='text' placeholder='Search'></input>
+        <input className={`px-3 w-[400px] h-[35px] leading-[34px] font-['Montserrat'] rounded-[99px] border col-start-7 col-span-4 focus:outline-none
+        ${activeTab == 'Landing' ? "placeholder-white border-white bg-inherit text-white" : "border-slate-300"}
+        `}
+        type='text' 
+        placeholder='Search'/>
 
 
         {/* Sign Out */}

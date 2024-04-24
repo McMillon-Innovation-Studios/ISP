@@ -8,7 +8,7 @@ import { collection, onSnapshot, query, addDoc, serverTimestamp, where, getDocs 
 import { getAuth, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 
-const ChatSideBar = ({userData, setSelectedChatroom}) => {
+const ChatSideBar = ({userData, selectedChatroom, setSelectedChatroom}) => {
   
   const[activeTab, setActiveTab] = useState('chatrooms');
   const [loading,setLoading]=useState(false);
@@ -54,40 +54,6 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
     return () => unsubscribeChatrooms();
   }, [userData]);
 
-  // Create a chatroom
-  const createChat = async(user)=>{
-    // Check if chatroom already exists
-    const existingChatroom = query(collection(firestore,'chatrooms'),where('users','==',[user.id,userData.id]));
-
-    try{
-      const existingChatroomSnapshot = await getDocs(existingChatroom);
-
-      if(existingChatroomSnapshot.docs.length > 0) {
-        console.log('Chatroom already exists');
-        return;
-      }
-
-      //chatroom does not exist, create one
-      const usersData = {
-        [userData.id]:userData,
-        [user.id]:user,
-      }
-
-      const chatroomData = {
-        users:[user.id, userData.id],
-        usersData,
-        timestamp:serverTimestamp(),
-        lastMessage:null,
-      }
-
-      const chatroomRef = await addDoc(collection(firestore,'chatrooms'),chatroomData);
-      console.log('chatroom created with id', chatroomRef.id);
-      setActiveTab("chatrooms");
-
-    }catch(err){
-        console.log("Error creating or checking chatroom:", error);
-      }
-    }
 
     const openChat = async (chatroom) => {
       const data = {
@@ -98,16 +64,6 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
       setSelectedChatroom(data);
   }
 
-  const logoutClick = () => {
-    signOut(auth)
-    .then(() => {
-      console.log('Log out successful');
-     router.push('/login');
-    })
-    .catch((error) => {
-      console.error('Error logging out:', error);
-    });
-   }
 
   return(
     <div className="basis-1/4 bg-white border-y-2 border-slate-200 font-['Montserrat']">
@@ -119,11 +75,13 @@ const ChatSideBar = ({userData, setSelectedChatroom}) => {
                 userChatrooms.map((chatroom) => (
                   <div key={chatroom.id} onClick={()=>{openChat(chatroom)}}>
                   <ChatProfiles
+                    chatroomId={chatroom.id}
                     firstName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].firstName}
                     lastName={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].lastName}
                     avatarUrl={chatroom.usersData[chatroom.users.find((id) => id !== userData?.id)].avatarUrl}
                     latestMessageText={chatroom.lastMessage}
-                    time="00:00"
+                    selectedChatroom={selectedChatroom}
+                    time="00:00" 
                   />
   
                   </div>

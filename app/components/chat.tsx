@@ -138,11 +138,18 @@ const Chat = ({user, selectedChatroom}) => {
         </div>
 
         {/* Chat Box */}
-        <div ref={messagesContainerRef} className="h-[665px] bg-sky-50 overflow-y-scroll"> 
+        <div ref={messagesContainerRef} className={`h-[665px] bg-sky-50 overflow-y-scroll ${selectedChatroom != null ? "" : "grid place-items-center"}`}> 
             {
+                selectedChatroom != null ?
                 messages?.map((message)=>(
                     <MessageCard key={message.id} message={message} me={me} other={other}/>
                 ))
+
+                :
+
+                <div className="text-black font-bold text-xl">
+                    <span>Select A User To Start Chatting!</span>
+                </div>
             }
         </div>
 

@@ -5,12 +5,12 @@ import Image from 'next/image'
 // TESTING FOR FIREBASE
 // *******************
 
-const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) => {
+const ChatProfiles = ({chatroomId, selectedChatroom, firstName, lastName, avatarUrl, latestMessageText,time}) => {
 
+    console.log("key", chatroomId);
+    console.log("Chatroom id", selectedChatroom?.id);
   return (
-
-    <div className="group flex flex-row bg-white justify-between hover:bg-blue-600">
-
+    <div className={`group flex flex-row justify-between hover:bg-blue-600 ${selectedChatroom?.id == chatroomId ? "bg-blue-600" : "bg-white"}`}>
         {/* Left Side */}
         <div className="flex flex-row">
             <div className="overflow-hidden bg-sky-50 border border-black flex flex-row items-center my-auto rounded-full ml-3">
@@ -34,10 +34,10 @@ const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) 
                 }
             </div>
             <div className="p-2 flex-col">
-                <div className="font-bold group-hover:text-white">
+                <div className={`font-bold group-hover:text-white ${selectedChatroom?.id == chatroomId ? "text-white" : ""}`}>
                     <span>{firstName} {lastName}</span>
                 </div>
-                <div className="text-slate-400 group-hover:text-white max-w-[250px]">
+                <div className={`text-slate-400 group-hover:text-white max-w-[250px] ${selectedChatroom?.id == chatroomId ? "text-white" : ""}`}>
                     <p className="truncate">{latestMessageText}</p>
                 </div>
             </div>
@@ -46,10 +46,10 @@ const ChatProfiles = ({firstName, lastName, avatarUrl, latestMessageText,time}) 
 
         {/* Right Side */}
         <div className="px-3 py-2 flex-col text-right">
-            <div className="text-slate-400 group-hover:text-white">
+            <div className={`text-slate-400 group-hover:text-white ${selectedChatroom?.id == chatroomId ? "text-white" : ""}`}>
                 {time}
             </div>  
-            <div className="group-hover:text-white">
+            <div className={`group-hover:text-white ${selectedChatroom?.id == chatroomId ? "text-white" : ""}`}>
                 1
             </div>
         </div>

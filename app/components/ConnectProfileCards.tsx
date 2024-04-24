@@ -16,14 +16,14 @@ const ConnectProfileCards = (props:any) => {
     let createChat = props.createChat;
     let sendMessageAndCreateChat = props.sendMessageAndCreateChat;
 
-    const [showModal, setShowModal] = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false);
 
     return (
-
-        <div className="h-[500px] z-0 bg-white rounded-md border border-black p-4 flex flex-col items-center shadow-xl">
+        
+        <div className=" z-0 bg-white rounded-md border border-black p-4 flex flex-col items-center shadow-xl">
             
             {/* Profile Image */}
-            <div className="overflow-hidden bg-sky-50 border border-black flex flex-row items-center my-auto rounded-full">
+            <div className="overflow-hidden bg-sky-50 border border-black flex flex-row items-center rounded-full">
             {
                 otherUser.avatarUrl ? 
                 <Image
@@ -52,7 +52,7 @@ const ConnectProfileCards = (props:any) => {
             {/* Country Flag */}
             <div className="border border-black drop-shadow object-fill overflow-hidden">
             {
-                otherUser.avatarUrl ? 
+                otherUser.countryFlag ? 
                 <Image
                 src={otherUser.countryFlag}
                 alt='profile'
@@ -78,7 +78,7 @@ const ConnectProfileCards = (props:any) => {
                 {otherUser.homeCountry ? otherUser.homeCountry : "Unknown Country"}
             </div>
 
-            {/* Univeresity & Major*/}
+            {/* University & Major*/}
             <div className="py-4 flex flex-col items-center">
                 <div className="">
                     {otherUser.university ? otherUser.university : "Unknown University"}
@@ -90,10 +90,10 @@ const ConnectProfileCards = (props:any) => {
 
             {/* View Profile Button */}
             <div className="p-4 text-white">
-            <button className="rounded-md focus:ring-2 bg-gradient-to-r from-cyan-500 to-blue-500 drop-shadow p-2" onClick={() => setShowModal(true)}>View Profile</button>
+            <button className="rounded-md focus:ring-2 bg-gradient-to-r from-cyan-500 to-blue-500 drop-shadow p-2" onClick={() => setShowProfileModal(true)}>View Profile</button>
             <ConnectProfileModals 
-            isVisible={showModal} 
-            onClose={()=>setShowModal(false)} 
+            isProfileModalVisible={showProfileModal} 
+            onProfileModalClose={()=>setShowProfileModal(false)} 
             otherUser={otherUser} 
             userData={userData} 
             createChat={createChat} 

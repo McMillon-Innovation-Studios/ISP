@@ -5,22 +5,24 @@ import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, u
 import { IoSend } from "react-icons/io5";
 import { PiChatCircleBold } from "react-icons/pi";
 import { CgCloseO } from "react-icons/cg";
+import ConnectConfirmModals from "./ConnectConfirmModals";
 import message from "../message/page";
 
-const ConnectProfileModals = ({ isVisible, onClose, otherUser, userData, createChat, sendMessageAndCreateChat}) => {
+const ConnectProfileModals = ({ isProfileModalVisible, onProfileModalClose, otherUser, userData, createChat, sendMessageAndCreateChat}) => {
 
     const [message, setMessage] = useState("");
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-    if( !isVisible) {
+    if( !isProfileModalVisible) {
         return null;
     }
 
     return (
         <div className="z-50 fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
-            <div className='w-[650px] p-5 text-black bg-white flex flex-col rounded-md items-center shadow-2xl'>
+            <div className='w-[650px] p-5 text-black bg-white flex flex-col rounded-md items-center shadow-2xl border border-black'>
 
                 {/* Close Button */}
-                <CgCloseO className="w-10 h-10 text-black text-xl place-self-end p-2 cursor-pointer" onClick={() => onClose()}/>
+                <CgCloseO className="w-10 h-10 text-black text-xl place-self-end p-2 cursor-pointer" onClick={() => onProfileModalClose()}/>
                    
                 <div className="flex flex-col items-center p-2 rounded">
                     
@@ -90,7 +92,7 @@ const ConnectProfileModals = ({ isVisible, onClose, otherUser, userData, createC
 
                     {/* Send Message*/}
                     <div className="text-[19px] font-bold">
-                        Connect With mentor
+                        Connect With Mentor
                     </div>
                     <div className="flex items-center justify-center">
                     <div className="relative flex flex-row items-center p-4">
@@ -106,6 +108,11 @@ const ConnectProfileModals = ({ isVisible, onClose, otherUser, userData, createC
                             className="mr-4 ml-2 w-6 h-6 cursor-pointer text-blue-600"
                         />
                     </div>
+                    </div>
+                        
+                    {/* Confirm Modal */}
+                    <div>
+                        
                     </div>
                 </div>
             </div>

@@ -53,7 +53,7 @@ const TestMessage = () => {
                 </div>
                 
                 <div className="flex-auto border flex flex-row">
-                    <ChatSidebar userData={user} setSelectedChatroom={setSelectedChatroom}/>
+                    <ChatSidebar userData={user} selectedChatroom={selectedChatroom} setSelectedChatroom={setSelectedChatroom}/>
                     
                     <Chat user={user} selectedChatroom={selectedChatroom}/>
                 </div>
