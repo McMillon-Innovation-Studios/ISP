@@ -68,10 +68,10 @@ const Login = () => {
         <div className="bg-white">
             <NavBar
             activeTab=""/>
-            <div className="max-w-[400px] w-full mx-auto mt-10 bg-white p-6 text-center font-['Lucida Sans']">
-
+            <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
+                <div className="border border-white p-5">
                 {/* Log In */}                
-                <div className="mt-10 text-4xl">Log In</div>
+                <div className="text-4xl">Log In</div>
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
 
@@ -111,13 +111,15 @@ const Login = () => {
                     </button>
                 </div>
 
+                {/* Go to Sign Up  */}
                 <span>New to Hello World?{' '}
-                    <Link href="/register" className="text-blue-600 hover:text-blue-800 hover:underline">
+                    <Link href="/createAccount" className="text-blue-600 hover:text-blue-800 hover:underline">
                         Register now
                     </Link>
 
                 </span>
                 </form>
+                </div>
             </div>            
         </div>
     )

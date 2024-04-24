@@ -1,3 +1,6 @@
+//Will be deleted (eventually). Used as a middle page to move things around the registering pages
+//Old Sign Up
+
 'use client'
 import React from 'react'
 import NavBar from '../components/navBar'

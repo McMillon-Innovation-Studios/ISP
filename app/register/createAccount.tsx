@@ -10,7 +10,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore'
 
 
-const Register = () => {
+const () = () => {      // const page, (Backend) 
 
     const[firstName, setFirstName] = useState<string>('');
     const[lastName, setLastName] = useState('');
@@ -97,63 +97,49 @@ const Register = () => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+
+    
     return (
         <div className="bg-white">
             <NavBar
             activeTab=""/>
             <div className="min-h-screen flex flex-col justify-center items-center text-center font-['Lucida Sans']">
-                <div className="border border-white w-4/5 sm:w-[500px]">
+                <div className="border border-white px-5">
 
-                {/* Sign Up (header) */}                
-                <div className="mb-3 text-5xl">Sign Up</div>
+                {/* Create an account (header) */}                
+                <div className="mb-3 text-5xl">Create an account</div>
                 
-                {/* Brief Description */}
-                <div className="mt-5 text-md leading-6">Welcome to Helllo World! Sign up and join our community today.</div>
+                {/* Hello World Description */}
+                <div className="mt-5 text-md leading-6">Join us today, and embark on a transformative educational journey with Hello World, <br/> where connections trascend borders, and learning knows no bounds.</div>
                 
                 <form onSubmit={handleSubmit}  className=" flex flex-col gap-6">
 
-                {/* First and Last Name */}
-                <div className="mt-5 pl-4 text-[15px] grid grid-cols-2">
-                    <input type="text" placeholder="Enter First Name" className="w-11/12 h-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.firstName && <span className='mt-1 grid grid-cols-subgrid gap-4 col-span-3 text-sm text-red-500'>{errors.firstName}</span>} 
-
-                    <input type="text" placeholder="Enter Last Name" className="w-11/12 h-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.lastName && <span className='mt-1 flex flex-col gap-1 text-sm text-red-500'>{errors.lastName}</span>}
-                </div>
-
-                {/* Email */}
-                <div className="mt-1 text-black text-[15px]">
-                    <input type="email" placeholder="Enter Email" className="w-11/12 h-[50px] pl-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                    {errors.email && <span className='mt-1 flex flex-col gap-1 text-sm text-red-500'>{errors.email}</span>} 
-                </div>
-
-                {/* Password */}
-                <div className="mt-1 text-black text-[15px]">
-                    <input type="password" placeholder="Enter Password" className="w-11/12 h-[50px] px-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                    {errors.password && <span className='mt-1 flex flex-col gap-1 text-sm text-red-500'>{errors.password}</span>}
-                </div>
-
-                {/* Confirm Password */}
-                <div className="mt-1 text-black text-[15px]">
-                    <input type="password" placeholder="Confirm Password" className="w-11/12 h-[50px] px-4 bg-white rounded-[99px] border border-blue-600 hover:bg-blue-100 transition ease-out duration-400 focus:outline-none" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
-                    {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
-                </div>
-
-                {/* Sign Up Button */}
-                <div className="text-white text-[19px]">
-                    <button type="submit" className="w-[350px] h-[50px] leading-[50px] bg-blue-600 rounded-[99px] border border-blue-600 hover:bg-blue-700 transition ease-out duration-400">
+                {/* I am a Mentor/Student Buttons */}
+                <div className="mt-8 text-[20px] flex flex-col-2 justify-between font-['Lucida Sans']">
+                    <button type="/register" className="w-[300px] h-[65px] text-white font-bold bg-blue-600 rounded-[99px] border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition ease-out duration-400">
                     {
-                        loading ? "Loading..." :  "Sign Up"
+                        loading ? "Loading..." :  "I am a Mentor"
+                    }
+                    </button>
+                    <button type="/register" className="w-[300px] h-[65px] text-blue-600 font-bold bg-white rounded-[99px] border-2 border-blue-600 hover:bg-blue-100 transition ease-out duration-400">
+                    {
+                        loading ? "Loading..." :  "I am a Student"
                     }
                     </button>
                 </div>
 
-                </form>
+                {/* Go to Log In */}
+                <span className="mt-4">Already have an account?{' '}
+                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
+                        Log In
+                    </Link>
+                </span>
 
+                </form>
                 </div>
             </div>            
         </div>
     )
 }
 
-export default Register
+export default // where to export (backend)
