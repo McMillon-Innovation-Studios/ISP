@@ -8,6 +8,7 @@ import { firestore, app} from '@/lib/firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
 import { doc, getDoc } from 'firebase/firestore';
+import { FaSearch } from 'react-icons/fa';
 
 
 
@@ -115,12 +116,17 @@ const NavBar = ({activeTab}) => {
         </div>
 
         {/*Search Bar */}
-        <input className={`px-3 w-[400px] h-[35px] leading-[34px] font-['Montserrat'] rounded-[99px] border col-start-7 col-span-4 focus:outline-none
-        ${activeTab == 'Landing' ? "placeholder-white border-white bg-inherit text-white" : "border-slate-300"}
-        `}
-        type='text' 
-        placeholder='Search'/>
-
+        <div className={`px-3 w-[400px] h-[35px] leading-[34px] font-['Montserrat'] rounded-[99px] border col-start-7 col-span-4 focus:outline-none flex
+        ${activeTab == 'Landing' ? "bg-inherit text-white" : ""}
+        `}>
+            <FaSearch id="search-icon" className="" className={`mt-1.5 text-[20px] "  ${activeTab == 'Landing' ? "bg-inherit text-white" : "text-gray-500"}
+        `} />
+            <input 
+            className={`px-3 text-lg w-[400px] focus:outline-none  ${activeTab == 'Landing' ? "placeholder-white border-white bg-inherit text-white" : "border-slate-300"} `}
+            type='text' 
+            placeholder='Search'
+            />
+        </div>
 
         {/* Sign Out */}
 
